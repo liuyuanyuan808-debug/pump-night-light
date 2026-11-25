@@ -1,0 +1,3485 @@
+<!doctype html>
+<html lang="en" data-visualize-standalone>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com https://persistent.oaistatic.com/plugins/visualize/; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com https://persistent.oaistatic.com/plugins/visualize/charts/; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>M5 Ultra · 夜灯交互原型</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+
+</head>
+<body>
+<iframe id="codex-visualization" sandbox="allow-scripts" referrerpolicy="no-referrer" title="M5 Ultra · 夜灯交互原型" data-srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot; data-visualize-standalone&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com https://persistent.oaistatic.com/plugins/visualize/; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com https://persistent.oaistatic.com/plugins/visualize/charts/; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;M5 Ultra · 夜灯交互原型&lt;/title&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 16px);
+  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));
+  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --red: light-dark(rgb(224 46 42), rgb(255 103 100));
+  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));
+  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));
+  --viz-series-1: light-dark(rgb(51 156 255), rgb(131 195 255));
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans:
+    -apple-system-body, ui-sans-serif, -apple-system, system-ui, &quot;Segoe UI&quot;,
+    Helvetica, &quot;Apple Color Emoji&quot;, Arial, sans-serif, &quot;Segoe UI Emoji&quot;,
+    &quot;Segoe UI Symbol&quot;;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --icon-size: 16px;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --corner-shape: round;
+  --radius: var(--border-radius-lg, 8px);
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 2);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Keep the floating Page header&#x27;s clearance inside the scrolling document. */
+html[data-visualize-page-header] {
+  padding-block-start: var(--page-header-clearance);
+  scroll-padding-block-start: var(--page-header-clearance);
+}
+
+html[data-visualize-page-inline-inset] &gt; body {
+  padding-inline: var(--page-content-inline-inset);
+}
+
+html &gt; body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: var(--visualize-paint-gutter, 0px);
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans) !important;
+  -webkit-font-smoothing: antialiased;
+  font-size: var(--font-size-base);
+  line-height: calc(var(--font-size-base) * 1.625);
+  font-weight: var(--font-weight-normal);
+}
+
+.cursor-interaction {
+  cursor: var(--cursor-interaction, pointer);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: var(--cursor-interaction, pointer);
+  text-decoration: none;
+  text-underline-offset: 2px;
+  font-weight: inherit;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+.table {
+  font-family: var(--font-sans);
+}
+
+h1 {
+  font-size: calc(var(--font-size-base) * 1.5);
+  line-height: 1.3333333333;
+}
+
+h2 {
+  font-size: calc(var(--font-size-base) * 1.25);
+  line-height: 1.4;
+}
+h3 {
+  font-size: calc(var(--font-size-base) * 1.125);
+  line-height: 1.5555555556;
+}
+h4 {
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+}
+h5,
+h6 {
+  font-size: var(--font-size-base);
+  line-height: calc(var(--font-size-base) * 1.625);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+b,
+strong,
+th {
+  font-weight: 600;
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: var(--corner-shape);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+pre,
+pre code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: calc(var(--font-size-base) * 0.875);
+  line-height: calc(var(--font-size-base) * 1.625);
+  font-family: var(--font-sans);
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 5%, transparent);
+}
+.table :is(th, td):not(:last-child) {
+  padding-inline-end: calc(var(--font-size-base) * 1.5);
+}
+
+.table-responsive &gt; .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead :is(th, td) {
+  border-bottom-color: var(--border-strong, var(--input));
+  padding-block: calc(var(--font-size-base) / 2);
+  line-height: var(--font-size-base);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+.table tbody :is(th, td) {
+  padding-block: calc(var(--font-size-base) * 0.625);
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 8px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align=&quot;right&quot;]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align=&quot;center&quot;]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: var(--corner-shape);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+.widget {
+  min-width: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  box-shadow: 0 0 0 0.5px var(--border-strong, var(--border));
+  color: var(--foreground);
+  background: var(--background);
+}
+
+#widget &gt; :not(.card, .widget, .progress) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+[data-codex-dashboard-annotation-hover],
+[data-codex-dashboard-annotation-hover] * {
+  cursor: var(--codex-dashboard-review-cursor, crosshair) !important;
+}
+
+@supports not (top: anchor(top)) {
+  [data-codex-dashboard-annotation-hover] {
+    outline: 2px dashed var(--blue) !important;
+    outline-offset: -2px;
+  }
+}
+
+[data-codex-dashboard-review-overlay]:popover-open,
+[data-codex-dashboard-note-marker] {
+  all: initial;
+}
+
+[data-dashboard-inspection=&quot;available&quot;]:not(:focus-visible) {
+  outline: none;
+}
+
+[data-dashboard-inspection=&quot;current&quot;],
+[data-codex-dashboard-review-overlay]:popover-open {
+  outline: 2px solid var(--blue);
+  outline-offset: min(
+    3px,
+    calc(var(--dashboard-gap, 16px) / 4),
+    calc(var(--visualize-paint-gutter, 5px) - 2px)
+  );
+}
+
+[data-codex-dashboard-review-overlay]:popover-open {
+  position: fixed;
+  position-anchor: auto;
+  left: anchor(left);
+  top: anchor(top);
+  width: anchor-size(width);
+  height: anchor-size(height);
+  position-visibility: anchors-visible;
+  pointer-events: none;
+  /* Annotation targets range from individual table cells to whole blocks. */
+  border-radius: min(var(--radius-2xl), 20%);
+  outline-style: dashed;
+}
+
+[data-codex-dashboard-note-marker] {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  transform: translate(-50%, -50%);
+  width: 26px;
+  height: 26px;
+  border-radius: 50% 50% 50% 3px;
+  background: var(--color-background-info-solid, var(--blue));
+  box-shadow:
+    0 0 0 1px white,
+    0 4px 8px -2px rgb(0 0 0 / 16%);
+}
+
+[data-codex-dashboard-note-marker]:enabled {
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+[data-codex-dashboard-note-marker]:enabled:is(:hover, :focus-visible) {
+  scale: 1.08;
+  transform-origin: bottom left;
+}
+
+[data-dashboard-direct-editing]
+  &gt; :is(experimental-dash-block, dash-block)::part(header) {
+  touch-action: auto;
+  user-select: auto;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  border: 1px solid var(--border);
+  corner-shape: var(--corner-shape);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+  font-family: var(--font-sans);
+  padding: 5px 12px;
+  border-color: color-mix(
+    in oklab,
+    light-dark(var(--primary-foreground), var(--foreground)) 5%,
+    transparent
+  );
+  border-radius: var(--radius-2xl);
+  color: light-dark(var(--primary-foreground), var(--foreground));
+  background: light-dark(var(--foreground), var(--popover));
+  box-shadow: 0 8px 18px rgb(15 23 42 / 20%);
+  letter-spacing: -0.15px;
+  font-size: calc(var(--font-size-base) * 14 / 16);
+  font-size: round(nearest, calc(var(--font-size-base) * 14 / 16), 1px);
+  font-weight: 600;
+  line-height: 18px;
+  text-align: center;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+hr {
+  width: 100%;
+  height: 1px;
+  margin-block: 6px;
+  border: 0;
+  background: var(--border);
+}
+
+.nav {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 4px;
+}
+
+.progress {
+  display: flex;
+  height: 8px;
+  margin-block: calc((var(--line-height-normal, 1.5em) - 8px) / 2);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+}
+
+.progress-bar:only-child {
+  border-radius: var(--radius-full);
+}
+
+.progress-bar {
+  height: 100%;
+  flex-shrink: 0;
+  border: 0;
+  background: var(--viz-series-1);
+}
+
+.viz-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  color: color-mix(in srgb, var(--foreground) 40%, var(--muted-foreground));
+  background: color-mix(in srgb, var(--foreground) 5%, transparent);
+  font-family: var(--font-sans);
+  font-size: calc(var(--font-size-base) * 14 / 16);
+  font-size: round(nearest, calc(var(--font-size-base) * 14 / 16), 1px);
+  font-weight: var(--font-weight-normal);
+  line-height: 1;
+}
+
+small,
+.text-small {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.nav-link,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+/* Match inline alignment without overriding a containing flex or grid layout. */
+.btn,
+.nav-link,
+.form-control,
+.form-select,
+.form-range,
+.form-check {
+  vertical-align: middle;
+}
+
+.btn,
+.nav-link {
+  --btn-size: calc(12px + 2 * var(--control-spacing, 12px));
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  corner-shape: var(--corner-shape);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: inherit;
+  font-family: var(--font-sans);
+  height: fit-content;
+  min-height: var(--btn-size);
+  padding-inline: var(--control-spacing, 12px);
+  border-color: transparent;
+  border-radius: var(--radius-full);
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 5%, transparent);
+  font-size: calc(var(--font-size-base) * 14 / 16);
+  font-size: round(nearest, calc(var(--font-size-base) * 14 / 16), 1px);
+  font-weight: var(--font-weight-normal);
+  line-height: 18px;
+}
+
+.btn {
+  border-color: var(--border);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+}
+
+/* Codex Button size=&quot;compact&quot;; appearance stays with the button variant. */
+.btn-sm {
+  --btn-size: 24px;
+  padding-inline: 8px;
+  font-size: calc(var(--font-size-base) * 12 / 16);
+  font-size: round(nearest, calc(var(--font-size-base) * 12 / 16), 1px);
+  line-height: 16px;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: var(--cursor-interaction, pointer);
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: light-dark(
+    color-mix(in srgb, var(--foreground) 5.5%, transparent),
+    color-mix(in srgb, var(--foreground) 8%, transparent)
+  );
+}
+
+.nav-link:not(:disabled):not([aria-disabled=&quot;true&quot;]):hover {
+  background: color-mix(in srgb, var(--foreground) 10%, transparent);
+}
+
+.btn-primary {
+  border-color: var(--border);
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: border-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: border-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--muted-foreground);
+  background: light-dark(
+    color-mix(in srgb, var(--foreground) 5.5%, transparent),
+    color-mix(in srgb, var(--foreground) 8%, transparent)
+  );
+}
+
+.nav-pills .nav-link {
+  min-width: 0;
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.nav-justified .nav-link {
+  flex: 1 1 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.nav-pills .nav-link.active {
+  color: var(--foreground);
+  background: var(--muted);
+}
+
+/* Shared preview chrome; product styles stay inside each variant. */
+.viz-dotted-background {
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--foreground) 14%, transparent) 0.8px,
+    transparent 0.8px
+  );
+  background-position: center;
+  background-size: 16px 16px;
+}
+
+.viz-carousel {
+  position: relative;
+  min-width: 0;
+}
+
+.viz-carousel:has(&gt; .viz-carousel-controls) {
+  min-height: calc(60px + var(--viz-carousel-picker-height, 0px));
+  padding-bottom: 60px;
+}
+
+.viz-carousel &gt; [data-variant][hidden] {
+  display: none !important;
+}
+
+.viz-carousel &gt; [data-variant] {
+  isolation: isolate;
+}
+
+.viz-carousel-controls {
+  --viz-carousel-hover: light-dark(
+    color-mix(in srgb, var(--foreground) 5.4%, transparent),
+    color-mix(in srgb, var(--foreground) 7.8%, transparent)
+  );
+  position: absolute;
+  z-index: 2;
+  bottom: 8px;
+  left: 50%;
+  display: flex;
+  width: max-content;
+  /* Leave room for the host&#x27;s design-controls launcher at the trailing edge. */
+  max-width: calc(100% - 96px);
+  align-items: center;
+  gap: 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-sans);
+  /* Match the settings dropdown chrome independently of the content font size. */
+  font-size: 13px;
+  font-weight: var(--font-weight-normal);
+  line-height: 18px;
+  transform: translateX(-50%);
+  user-select: none;
+}
+
+/* Keep authored mockup button styles out of the shared carousel chrome. */
+.viz-carousel-controls button,
+.viz-carousel-picker &gt; summary {
+  display: flex !important;
+  height: auto !important;
+  min-height: 30px;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px;
+  padding: 0 6px !important;
+  -webkit-app-region: no-drag;
+  border: 0 !important;
+  border-radius: 14px !important;
+  color: inherit !important;
+  background: transparent !important;
+  font: inherit !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.viz-carousel-controls &gt; button,
+.viz-carousel-picker &gt; summary {
+  position: relative;
+  isolation: isolate;
+}
+
+.viz-carousel-controls &gt; button {
+  --icon-size: 16px;
+  width: 30px !important;
+  padding: 0 !important;
+}
+
+.viz-carousel-picker &gt; summary {
+  padding-inline: 12px !important;
+}
+
+.viz-carousel-controls .viz-carousel-caret {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  margin: 0;
+  color: inherit;
+  transform: rotate(180deg);
+}
+
+.viz-carousel-controls &gt; button &gt; svg,
+.viz-carousel-controls .viz-carousel-caret,
+.viz-carousel-count {
+  opacity: 0.5;
+}
+
+.viz-carousel-controls &gt; button::before,
+.viz-carousel-picker &gt; summary::before {
+  position: absolute;
+  z-index: -1;
+  inset: 3px;
+  border-radius: 12px;
+  content: &quot;&quot;;
+  pointer-events: none;
+}
+
+.viz-carousel-controls &gt; button:hover::before,
+.viz-carousel-picker &gt; summary:hover::before {
+  background: var(--viz-carousel-hover);
+}
+
+.viz-carousel-controls &gt; button,
+.viz-carousel-controls [data-lucide],
+.viz-carousel-controls .lucide {
+  flex-shrink: 0;
+}
+
+.viz-carousel-picker {
+  min-width: 0;
+}
+
+.viz-carousel-picker &gt; summary {
+  min-width: 0;
+  list-style: none;
+}
+
+.viz-carousel-picker &gt; summary::-webkit-details-marker {
+  display: none;
+}
+
+.viz-carousel-count {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.viz-carousel-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.viz-carousel-options {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 4px);
+  left: 0;
+  display: flex;
+  max-height: 240px;
+  flex-direction: column;
+  gap: 2px;
+  overflow: auto;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--background);
+  box-shadow: 0 4px 12px light-dark(rgb(0 0 0 / 6%), rgb(0 0 0 / 25%));
+}
+
+.viz-carousel-options &gt; button {
+  border-radius: max(0px, calc(var(--radius-lg) - 5px)) !important;
+  width: 100% !important;
+  min-height: 28px;
+  justify-content: flex-start !important;
+  padding: 4px 8px !important;
+  font-size: var(--font-size-small) !important;
+  text-align: start;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.viz-carousel-options &gt; [aria-current=&quot;true&quot;],
+.viz-carousel-options &gt; button:hover {
+  background: var(--viz-carousel-hover) !important;
+}
+
+.btn:disabled,
+.nav-link:disabled,
+.nav-link[aria-disabled=&quot;true&quot;] {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  corner-shape: var(--corner-shape);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  height: calc(12px + 2 * var(--control-spacing, 12px));
+  min-height: calc(12px + 2 * var(--control-spacing, 12px));
+  padding-inline: calc(4px + var(--control-spacing, 12px) / 2);
+  border-color: var(--input);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--popover) 96%, transparent);
+  font-size: calc(var(--font-size-base) * 14 / 16);
+  font-size: round(nearest, calc(var(--font-size-base) * 14 / 16), 1px);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.4285714286;
+}
+.form-control:is(
+  [type=&quot;file&quot;],
+  [type=&quot;date&quot;],
+  [type=&quot;datetime-local&quot;],
+  [type=&quot;month&quot;],
+  [type=&quot;week&quot;],
+  [type=&quot;color&quot;]
+) {
+  height: calc(12px + 2 * var(--control-spacing, 12px));
+  min-height: calc(12px + 2 * var(--control-spacing, 12px));
+  line-height: 18px;
+}
+.form-control:is(
+  [type=&quot;date&quot;],
+  [type=&quot;datetime-local&quot;],
+  [type=&quot;month&quot;],
+  [type=&quot;week&quot;]
+) {
+  padding-inline: var(--control-spacing, 12px);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+  padding: 0;
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+  min-height: calc(10px + 2 * var(--control-spacing, 12px));
+  padding-inline: var(--control-spacing, 12px);
+  margin-inline-end: var(--control-spacing, 12px);
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: calc(12px + 2 * var(--control-spacing, 12px));
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: var(--corner-shape);
+}
+
+textarea.form-control {
+  height: auto;
+  resize: vertical;
+  min-height: 96px;
+  padding: 8px 10px;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: none;
+}
+.form-control:disabled {
+  color: var(--muted-foreground);
+  background: color-mix(in srgb, var(--foreground) 5%, transparent);
+  opacity: 1;
+}
+.form-control[aria-invalid=&quot;true&quot;] {
+  border-color: var(--red);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--red) 20%, transparent);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: fit-content;
+  min-height: calc(12px + 2 * var(--control-spacing, 12px));
+  margin: 0;
+  /* The secondary icon role is 14px at compact density and 16px at web density. */
+  --icon-size: calc(10px + var(--control-spacing, 12px) / 2);
+  /* Settings dropdowns retain a 12px inset and a 4px text-to-chevron gap. */
+  padding: 0 calc(16px + var(--icon-size)) 0 12px;
+  outline: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  corner-shape: var(--corner-shape);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(
+      45deg,
+      transparent calc(50% - 0.6px),
+      var(--muted-foreground) calc(50% - 0.6px) calc(50% + 0.6px),
+      transparent calc(50% + 0.6px)
+    ),
+    linear-gradient(
+      135deg,
+      transparent calc(50% - 0.6px),
+      var(--muted-foreground) calc(50% - 0.6px) calc(50% + 0.6px),
+      transparent calc(50% + 0.6px)
+    );
+  background-position:
+    calc(100% - 12px - var(--icon-size) / 2) 50%,
+    calc(100% - 12px - var(--icon-size) * 0.18) 50%;
+  background-repeat: no-repeat;
+  background-size: calc(var(--icon-size) * 0.32) calc(var(--icon-size) * 0.32);
+  cursor: var(--cursor-interaction, default);
+  font-size: calc(var(--font-size-base) * 14 / 16);
+  font-size: round(nearest, calc(var(--font-size-base) * 14 / 16), 1px);
+  font-weight: var(--font-weight-normal);
+  line-height: 18px;
+}
+
+.form-select :is(option, optgroup) {
+  color: var(--popover-foreground);
+  background-color: var(--popover);
+}
+
+.form-select :is(option, optgroup):disabled {
+  color: var(--muted-foreground);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: light-dark(
+    color-mix(in srgb, var(--foreground) 5.5%, transparent),
+    color-mix(in srgb, var(--foreground) 8%, transparent)
+  );
+}
+
+.form-select:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+.form-select:disabled {
+  opacity: 0.4;
+}
+
+.form-check {
+  display: flex;
+  min-height: calc(12px + 2 * var(--control-spacing, 12px));
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  corner-shape: round;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  width: calc(10px + var(--control-spacing, 12px) / 2);
+  height: calc(10px + var(--control-spacing, 12px) / 2);
+  border-color: var(--border-strong, var(--input));
+  border-radius: calc(var(--radius-sm) / 2);
+  background-color: transparent;
+  color: var(--foreground);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:is(:checked, :indeterminate) {
+  border-color: var(--border-strong, var(--input));
+  background-color: color-mix(in srgb, var(--popover) 96%, transparent);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+  background-color: var(--foreground);
+}
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:indeterminate::before {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 65%;
+  height: 6.65%;
+  margin: auto;
+  border-radius: var(--radius-full);
+  background: var(--foreground);
+  mask: none;
+  content: &quot;&quot;;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  border-radius: var(--radius-full);
+  width: 16px;
+  height: 16px;
+  border: 0;
+  box-shadow: inset 0 0 0 1px var(--input);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 0;
+  background: radial-gradient(
+    circle,
+    var(--primary-foreground) 0 3px,
+    var(--foreground) 3px
+  );
+  box-shadow: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:focus-visible {
+  border-color: var(--ring);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+.form-check:not(.form-switch) .form-check-input[type=&quot;radio&quot;]:disabled,
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;radio&quot;]:disabled
+  + .form-check-label {
+  opacity: 0.5;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+  border-color: #fff;
+  background: #fff;
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--blue);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+  outline: none;
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  accent-color: var(--primary);
+  height: calc(12px + 2 * var(--control-spacing, 12px));
+  min-height: calc(12px + 2 * var(--control-spacing, 12px));
+  outline: none;
+  border-radius: var(--radius-full);
+  color: var(--foreground);
+  background: transparent;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  background: var(--form-range-track, var(--border));
+  height: 2px;
+  border-radius: var(--radius-full);
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  margin-top: -9px;
+  border-color: transparent;
+  background: currentColor;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Outline the native track and thumb, preserving the larger input hit area. */
+.form-range:focus-visible::-webkit-slider-runnable-track {
+  outline: 2px auto Highlight;
+  outline-color: -webkit-focus-ring-color;
+}
+
+.form-range::-moz-range-track {
+  background: var(--form-range-track, var(--border));
+  height: 2px;
+  border-radius: var(--radius-full);
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  border-color: transparent;
+  background: currentColor;
+  box-shadow: var(--shadow-sm);
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  outline: 2px solid Highlight;
+  outline-offset: 2px;
+}
+
+.form-range:disabled {
+  opacity: 1;
+  cursor: default;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+  [aria-pressed=&quot;true&quot;],
+  [aria-selected=&quot;true&quot;],
+  .is-selected
+) {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--blue);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible,
+.nav-link:focus-visible {
+  outline-offset: 2px;
+  outline: none;
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.viz-carousel-controls :is(button, summary):focus-visible {
+  outline: 2px solid var(--ring) !important;
+  outline-offset: 2px !important;
+}
+
+/* Web recipes are the default, including on renderers without inline style queries. */
+@supports (border-radius: if(style(--corner-shape: round): 1px; else: 2px)) {
+  /* Match the host&#x27;s proportional text-sm scale at every text preference. */
+  .tooltip,
+  .viz-badge,
+  .btn,
+  .nav-link,
+  .form-control,
+  .form-select {
+    font-size: if(
+      style(--corner-shape: round): round(
+          nearest,
+          calc(var(--font-size-base) * 14 / 16),
+          1px
+        );
+        else: round(nearest, calc(var(--font-size-base) * 13 / 14), 1px)
+    );
+  }
+
+  .btn-sm {
+    font-size: if(
+      style(--corner-shape: round): round(
+          nearest,
+          calc(var(--font-size-base) * 12 / 16),
+          1px
+        );
+        else: round(nearest, calc(var(--font-size-base) * 12 / 14), 1px)
+    );
+  }
+
+  .btn,
+  .nav-link,
+  .form-select {
+    border-radius: if(
+      style(--corner-shape: round): var(--radius-full); else: var(--radius-lg)
+    );
+  }
+
+  .form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+    border-radius: if(
+      style(--corner-shape: round): calc(var(--radius-sm) / 2);
+        else: calc(var(--radius-lg) * 0.4)
+    );
+  }
+
+  .tooltip {
+    font-weight: if(
+      style(--corner-shape: round): 600; else: var(--font-weight-normal)
+    );
+  }
+}
+
+@media (pointer: coarse) {
+  .viz-carousel:has(&gt; .viz-carousel-controls) {
+    min-height: calc(76px + var(--viz-carousel-picker-height, 0px));
+    padding-bottom: 76px;
+  }
+
+  .btn,
+  .nav-link,
+  .viz-carousel-controls button,
+  .viz-carousel-picker &gt; summary,
+  .form-control,
+  .form-select {
+    --btn-size: 44px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Keep small-screen WebKit from zooming when a text field receives focus. */
+  .form-control,
+  .form-select {
+    font-size: max(16px, calc(var(--font-size-base) * 14 / 16));
+    font-size: max(
+      16px,
+      round(nearest, calc(var(--font-size-base) * 14 / 16), 1px)
+    );
+  }
+  .form-control:is(
+    [type=&quot;file&quot;],
+    [type=&quot;date&quot;],
+    [type=&quot;datetime-local&quot;],
+    [type=&quot;month&quot;],
+    [type=&quot;week&quot;],
+    [type=&quot;time&quot;],
+    [type=&quot;color&quot;]
+  ) {
+    height: 44px;
+    min-height: 44px;
+    font-size: max(16px, calc(var(--font-size-base) * 14 / 16));
+    font-size: max(
+      16px,
+      round(nearest, calc(var(--font-size-base) * 14 / 16), 1px)
+    );
+  }
+
+  .form-control[type=&quot;file&quot;]::file-selector-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .form-control-color[type=&quot;color&quot;] {
+    width: 44px;
+    height: 44px;
+  }
+
+  .form-control:is(
+    [type=&quot;date&quot;],
+    [type=&quot;datetime-local&quot;],
+    [type=&quot;month&quot;],
+    [type=&quot;time&quot;],
+    [type=&quot;week&quot;]
+  ) {
+    min-width: 0;
+    max-width: 100%;
+    padding-block: 8px;
+  }
+
+  .form-check {
+    min-height: 44px;
+    padding-inline: 15px;
+  }
+
+  .form-check-input {
+    position: relative;
+  }
+
+  .form-check-input::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    content: &quot;&quot;;
+    transform: translate(-50%, -50%);
+  }
+
+  .form-check-label {
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .form-range {
+    height: 44px;
+    touch-action: pan-y;
+  }
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: var(--icon-size) !important;
+  height: var(--icon-size) !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html:where([data-visualize-live]) &gt; body {
+  line-height: var(--font-line-height-base);
+}
+
+:where(html[data-visualize-live]) table,
+:where(html[data-visualize-live]) .table {
+  font: inherit;
+}
+
+:where(html[data-visualize-live]) small,
+:where(html[data-visualize-live]) .text-small {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+:where(html[data-visualize-live]) .table thead :is(th, td) {
+  line-height: inherit;
+}
+
+html&gt;body{padding:0}&lt;/style&gt;
+&lt;style&gt;
+/* The icon placeholders stay visible if the carousel icon library is unavailable. */
+.viz-carousel-previous &gt; i[data-lucide],
+.viz-carousel-next &gt; i[data-lucide] {
+  display: block;
+  box-sizing: border-box;
+  width: 8px;
+  height: 8px;
+  border: solid currentColor;
+  border-width: 2px 2px 0 0;
+}
+.viz-carousel-previous &gt; i[data-lucide] { transform: rotate(-135deg); }
+.viz-carousel-next &gt; i[data-lucide] { transform: rotate(45deg); }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;script type=&quot;application/json&quot; id=&quot;codex-visualization-widget-state&quot;&gt;__CODEX_VISUALIZATION_WIDGET_STATE__&lt;/script&gt;
+&lt;script&gt;(() =&gt; {
+  const root = document.documentElement;
+  const mediaQuery = globalThis.matchMedia(&quot;(prefers-color-scheme: dark)&quot;);
+  const apply = Reflect.apply;
+  const isArray = Array.isArray;
+  const hasOwn = Object.hasOwn;
+  const parentWindow = globalThis.parent;
+  const stringify = JSON.stringify;
+  const parse = JSON.parse;
+  const encode = TextEncoder.prototype.encode.bind(new TextEncoder());
+  const initialStateElement = document.getElementById(
+    &quot;codex-visualization-widget-state&quot;,
+  );
+  const initialGlobals = parse(initialStateElement?.textContent ?? &quot;{}&quot;);
+  initialStateElement?.remove();
+  /** @type {Record&lt;string, unknown&gt; | null} */
+  let state = initialGlobals.widgetState ?? null;
+  const statePersistence = initialGlobals.statePersistence ?? &quot;none&quot;;
+  let nextStateRequestId = 0;
+  /** @type {Map&lt;number, { resolve: () =&gt; void; reject: (error: Error) =&gt; void; timeout: ReturnType&lt;typeof globalThis.setTimeout&gt;; serializedState: string }&gt;} */
+  const pendingStateWrites = new Map();
+  const persistenceError = () =&gt;
+    Object.assign(
+      new Error(&quot;The host could not persist the widget state update&quot;),
+      {
+        code: -32000,
+        data: { code: &quot;widget_state_persistence_failed&quot;, retryable: false },
+      },
+    );
+  /**
+   * @param {object} prototype
+   * @param {string} property
+   */
+  const getPrototypeGetter = (prototype, property) =&gt; {
+    // oxlint-disable-next-line typescript/unbound-method -- invoked through captured Reflect.apply
+    const getter = Object.getOwnPropertyDescriptor(prototype, property)?.get;
+    if (getter == null) {
+      throw new Error(`Missing ${property} getter`);
+    }
+    return getter;
+  };
+  const getMessageData = getPrototypeGetter(MessageEvent.prototype, &quot;data&quot;);
+  const getMessagePorts = getPrototypeGetter(MessageEvent.prototype, &quot;ports&quot;);
+  const getMessageSource = getPrototypeGetter(MessageEvent.prototype, &quot;source&quot;);
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const addHostMessageListener = MessagePort.prototype.addEventListener;
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const postHostMessage = MessagePort.prototype.postMessage;
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const startHostPort = MessagePort.prototype.start;
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const stopMessagePropagation = Event.prototype.stopImmediatePropagation;
+  /** @type {MessagePort | null} */
+  let hostPort = null;
+  const postToHost = (type, payload) =&gt; {
+    if (hostPort != null) {
+      apply(postHostMessage, hostPort, [{ type, ...payload }]);
+    }
+  };
+  const openExternal = ({ href }) =&gt; {
+    if (globalThis.navigator.userActivation?.isActive === true) {
+      postToHost(&quot;open-external&quot;, { href });
+    }
+  };
+  const sendFollowUpMessage = ({ context, prompt, title }) =&gt; {
+    if (globalThis.navigator.userActivation?.isActive === true) {
+      postToHost(&quot;follow-up&quot;, { context, prompt, title });
+    }
+    return Promise.resolve();
+  };
+  /**
+   * @param {Record&lt;string, unknown&gt; | ((previous: Record&lt;string, unknown&gt; | null) =&gt; Record&lt;string, unknown&gt;)} next
+   * @returns {Promise&lt;void&gt;}
+   */
+  const setWidgetState = async (next) =&gt; {
+    const nextState = typeof next === &quot;function&quot; ? next(state) : next;
+    if (
+      nextState == null ||
+      typeof nextState !== &quot;object&quot; ||
+      isArray(nextState)
+    ) {
+      throw new TypeError(&quot;Widget state must be a JSON object&quot;);
+    }
+    const inputState = stringify(
+      nextState,
+      (_key, /** @type {unknown} */ value) =&gt; {
+        if (
+          typeof value === &quot;undefined&quot; ||
+          typeof value === &quot;function&quot; ||
+          typeof value === &quot;symbol&quot; ||
+          (typeof value === &quot;number&quot; &amp;&amp; !Number.isFinite(value))
+        ) {
+          throw new TypeError(&quot;Widget state must be a JSON object&quot;);
+        }
+        return value;
+      },
+    );
+    const parsedState = parse(inputState);
+    if (
+      parsedState == null ||
+      typeof parsedState !== &quot;object&quot; ||
+      isArray(parsedState)
+    ) {
+      throw new TypeError(&quot;Widget state must be a JSON object&quot;);
+    }
+    const storedState = {
+      modelContent: null,
+      privateContent: null,
+      ...parsedState,
+    };
+    const serializedState = stringify(storedState);
+    if (encode(serializedState).length &gt; 16 * 1024) {
+      throw new TypeError(
+        &quot;Widget state must be a JSON object of at most 16 KiB&quot;,
+      );
+    }
+    if (
+      hasOwn(storedState, &quot;imageIds&quot;) &amp;&amp;
+      (!isArray(storedState.imageIds) ||
+        storedState.imageIds.some(
+          (/** @type {unknown} */ id) =&gt; typeof id !== &quot;string&quot;,
+        ))
+    ) {
+      throw new TypeError(&quot;Widget state imageIds must be an array of strings&quot;);
+    }
+    if (storedState.imageIds?.length &gt; 0) {
+      throw Object.assign(
+        new TypeError(&quot;Visualization state does not support image attachments&quot;),
+        { code: -32602, data: { code: &quot;images_unsupported&quot; } },
+      );
+    }
+    state = storedState;
+    globalThis.openai.widgetState = state;
+    globalThis.dispatchEvent(
+      new CustomEvent(&quot;openai:set_globals&quot;, {
+        detail: { globals: { widgetState: state } },
+      }),
+    );
+    if (statePersistence === &quot;none&quot;) {
+      throw persistenceError();
+    }
+    const id = ++nextStateRequestId;
+    return new Promise((resolve, reject) =&gt; {
+      const timeout = globalThis.setTimeout(() =&gt; {
+        pendingStateWrites.delete(id);
+        reject(persistenceError());
+      }, 30_000);
+      pendingStateWrites.set(id, { resolve, reject, timeout, serializedState });
+      postToHost(&quot;widget-state-write&quot;, { id, state: serializedState });
+    });
+  };
+  const bindingElement = document.getElementById(&quot;codex-visualization-bindings&quot;);
+  const mockElement = document.getElementById(&quot;codex-connector-mocks&quot;);
+  const fileElement = document.getElementById(&quot;codex-preview-files&quot;);
+  const connectorGlobals = {};
+  if (bindingElement != null || mockElement != null || fileElement != null) {
+    const bindings = parse(bindingElement?.textContent ?? &quot;{}&quot;);
+    bindingElement?.remove();
+    const values = new Map();
+    for (const [name, binding] of Object.entries(bindings)) {
+      if (binding.type === &quot;json&quot;) values.set(name, structuredClone(binding.value));
+    }
+    const pending = [bindings];
+    while (pending.length) {
+      const object = pending.pop();
+      Object.freeze(object);
+      for (const child of Object.values(object)) {
+        if (child !== null &amp;&amp; typeof child === &quot;object&quot;) pending.push(child);
+      }
+    }
+    const updates = [];
+    if (mockElement != null) {
+      const mocks = Object.entries(parse(mockElement.textContent));
+      mockElement.remove();
+      for (const [name, value] of mocks) {
+        values.set(name, value);
+        updates.push({ name, revision: 1, state: &quot;ready&quot;, value: { type: &quot;json&quot;, value } });
+      }
+    }
+    if (fileElement != null) {
+      const files = parse(fileElement.textContent);
+      fileElement.remove();
+      const blobs = new Map();
+      const urls = [];
+      for (const [name, binding] of Object.entries(bindings)) {
+        if (binding.type !== &quot;file&quot; || !hasOwn(files, binding.path)) continue;
+        const file = files[binding.path];
+        let blob = blobs.get(binding.path);
+        if (blob == null) {
+          const bytes = Uint8Array.fromBase64?.(file.base64) ??
+            Uint8Array.from(atob(file.base64), (char) =&gt; char.charCodeAt(0));
+          blob = new Blob([bytes], { type: file.mimeType });
+          blobs.set(binding.path, blob);
+        }
+        const url = URL.createObjectURL(blob);
+        urls.push(url);
+        values.set(name, { name: file.name, blob, url });
+        updates.push({ name, revision: 1, state: &quot;ready&quot;, value: { type: &quot;file&quot;, ...file } });
+      }
+      globalThis.addEventListener(&quot;pagehide&quot;, (event) =&gt; {
+        // A persisted pagehide can restore this same document and its subscriptions.
+        if (event.persisted) return;
+        for (const url of urls) URL.revokeObjectURL(url);
+        urls.length = 0;
+      });
+    }
+    if (mockElement != null || fileElement != null) connectorGlobals.visualizationData = { updates };
+    connectorGlobals.visualization = {
+      get bindings() {
+        return bindings;
+      },
+      /** @param {string} name @param {(value: unknown) =&gt; void} callback */
+      onData(name, callback) {
+        if (typeof callback !== &quot;function&quot;) {
+          throw new TypeError(&quot;onData requires a callback&quot;);
+        }
+        try {
+          callback(values.get(name));
+        } catch (error) {
+          // oxlint-disable-next-line no-console -- Keep authored callback failures local.
+          console.error(&quot;Live visualization data callback failed&quot;, error);
+        }
+        // A static preview delivers the current value once per subscription.
+        return () =&gt; {};
+      },
+    };
+  }
+  const syncTheme = () =&gt; {
+    const theme = mediaQuery.matches ? &quot;dark&quot; : &quot;light&quot;;
+    root.dataset.theme = theme;
+    globalThis.openai = {
+      ...globalThis.openai,
+      ...connectorGlobals,
+      openExternal,
+      sendFollowUpMessage,
+      setWidgetState,
+      theme,
+      visualizationStyleVariables: {},
+      visualizationTheme: theme,
+      widgetState: state,
+      statePersistence,
+      stateModelContext: &quot;none&quot;,
+    };
+    globalThis.dispatchEvent(
+      new CustomEvent(&quot;openai:set_globals&quot;, {
+        detail: { globals: globalThis.openai },
+      }),
+    );
+  };
+  const sendHeight = () =&gt; {
+    postToHost(&quot;height&quot;, {
+      height: Math.ceil(
+        Math.max(
+          document.body.scrollHeight,
+          document.body.getBoundingClientRect().height,
+        ),
+      ),
+    });
+  };
+
+  globalThis.addEventListener(
+    &quot;message&quot;,
+    (event) =&gt; {
+      const data = apply(getMessageData, event, []);
+      const ports = apply(getMessagePorts, event, []);
+      const source = apply(getMessageSource, event, []);
+      if (
+        hostPort != null ||
+        source !== parentWindow ||
+        typeof data !== &quot;object&quot; ||
+        data?.type !== &quot;codex-visualization-initialize&quot; ||
+        !isArray(ports) ||
+        ports.length !== 1
+      ) {
+        return;
+      }
+      apply(stopMessagePropagation, event, []);
+      const nextHostPort = ports[0];
+      try {
+        apply(addHostMessageListener, nextHostPort, [
+          &quot;message&quot;,
+          (event) =&gt; {
+            const data = apply(getMessageData, event, []);
+            if (typeof data === &quot;object&quot; &amp;&amp; data?.type === &quot;measure&quot;) {
+              sendHeight();
+            } else if (
+              typeof data === &quot;object&quot; &amp;&amp;
+              data?.type === &quot;widget-state-result&quot;
+            ) {
+              /** @type {unknown} */
+              const id = data.id;
+              if (typeof id !== &quot;number&quot;) {
+                return;
+              }
+              const pending = pendingStateWrites.get(id);
+              if (pending != null) {
+                pendingStateWrites.delete(id);
+                globalThis.clearTimeout(pending.timeout);
+                if (data.ok === true) {
+                  pending.resolve();
+                } else {
+                  pending.reject(persistenceError());
+                }
+              }
+            }
+          },
+        ]);
+        apply(startHostPort, nextHostPort, []);
+      } catch {
+        return;
+      }
+      hostPort = nextHostPort;
+      for (const [id, { serializedState }] of pendingStateWrites) {
+        postToHost(&quot;widget-state-write&quot;, { id, state: serializedState });
+      }
+      sendHeight();
+    },
+    { capture: true },
+  );
+  document.currentScript?.remove();
+  mediaQuery.addEventListener(&quot;change&quot;, syncTheme);
+  globalThis.addEventListener(&quot;click&quot;, (event) =&gt; {
+    if (event.defaultPrevented) {
+      return;
+    }
+    let element = null;
+    if (event.target instanceof globalThis.Element) {
+      element = event.target;
+    } else if (event.target instanceof globalThis.Node) {
+      element = event.target.parentElement;
+    }
+    const link = element?.closest(&quot;a[href]&quot;);
+    const href = link?.getAttribute(&quot;href&quot;);
+    if (href == null) {
+      return;
+    }
+    if (href.startsWith(&quot;#&quot;)) {
+      let id;
+      try {
+        id = decodeURIComponent(href.slice(1));
+      } catch {
+        return;
+      }
+      const target = id.length === 0 ? root : document.getElementById(id);
+      if (
+        target == null ||
+        globalThis.navigator.userActivation?.isActive !== true
+      ) {
+        return;
+      }
+      event.preventDefault();
+      postToHost(&quot;scroll-to&quot;, {
+        top: target.getBoundingClientRect().top + globalThis.scrollY,
+      });
+      return;
+    }
+    event.preventDefault();
+    openExternal({ href });
+  });
+  new ResizeObserver(sendHeight).observe(document.body);
+  syncTheme();
+})();
+&lt;/script&gt;
+&lt;div class=&quot;viz-carousel viz-dotted-background&quot; id=&quot;night-light-auto-options&quot; aria-label=&quot;夜灯 Auto 交互方案&quot; data-previous-label=&quot;上一套&quot; data-next-label=&quot;下一套&quot;&gt;
+  &lt;section data-variant=&quot;同行胶囊&quot; aria-label=&quot;同行胶囊方案&quot;&gt;&lt;/section&gt;
+  &lt;section data-variant=&quot;独立设置行&quot; aria-label=&quot;独立设置行方案&quot; hidden&gt;&lt;/section&gt;
+  &lt;section data-variant=&quot;文字说明入口&quot; aria-label=&quot;文字说明入口方案&quot; hidden&gt;&lt;/section&gt;
+&lt;/div&gt;
+
+&lt;template id=&quot;night-light-auto-template&quot;&gt;
+  &lt;article class=&quot;auto-phone&quot; lang=&quot;en&quot; aria-label=&quot;Pump Control&quot;&gt;
+    &lt;div class=&quot;auto-screen&quot;&gt;
+      &lt;div class=&quot;auto-status&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;9:41&lt;/span&gt;&lt;span&gt;▴ ▰&lt;/span&gt;&lt;/div&gt;
+      &lt;header class=&quot;auto-header&quot;&gt;
+        &lt;span class=&quot;auto-nav&quot; aria-hidden=&quot;true&quot;&gt;‹&lt;/span&gt;
+        &lt;h2&gt;Pump Control&lt;/h2&gt;
+        &lt;button class=&quot;auto-nav auto-gear cursor-interaction&quot; type=&quot;button&quot; aria-label=&quot;Night Light settings&quot;&gt;⚙︎&lt;/button&gt;
+      &lt;/header&gt;
+      &lt;div class=&quot;auto-devices&quot; aria-label=&quot;Connected pumps&quot;&gt;
+        &lt;div&gt;&lt;img src=&quot;data:image/png;base64,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&quot; width=&quot;76&quot; height=&quot;88&quot; alt=&quot;&quot;&gt;&lt;span&gt;L &lt;b&gt;100&lt;/b&gt;&lt;/span&gt;&lt;time&gt;13:50&lt;/time&gt;&lt;/div&gt;
+        &lt;div class=&quot;auto-sync&quot;&gt;&lt;i aria-hidden=&quot;true&quot;&gt;⇄&lt;/i&gt;&lt;span&gt;Sync&lt;/span&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;img src=&quot;data:image/png;base64,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&quot; width=&quot;76&quot; height=&quot;88&quot; alt=&quot;&quot;&gt;&lt;span&gt;R &lt;b&gt;100&lt;/b&gt;&lt;/span&gt;&lt;time&gt;13:50&lt;/time&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;auto-boost&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;☆ &amp;nbsp;Milk Boost&lt;/span&gt;&lt;small&gt;00:01&lt;/small&gt;&lt;i&gt;&lt;/i&gt;&lt;/div&gt;
+      &lt;div class=&quot;auto-levels&quot; aria-label=&quot;Level. Left 5, right 6&quot;&gt;
+        &lt;div class=&quot;auto-level-heading&quot; aria-hidden=&quot;true&quot;&gt;◎ &amp;nbsp;Level &lt;span&gt;0–9&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;auto-level-grid&quot; aria-hidden=&quot;true&quot;&gt;
+          &lt;div&gt;L&lt;div class=&quot;auto-scale&quot;&gt;&lt;b&gt;5&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;
+          &lt;div&gt;Both&lt;div class=&quot;auto-scale auto-scale-both&quot;&gt;&lt;b&gt;⌃⌄&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;
+          &lt;div&gt;R&lt;div class=&quot;auto-scale&quot;&gt;&lt;b&gt;6&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;section class=&quot;auto-light&quot; aria-label=&quot;Light&quot;&gt;
+        &lt;div class=&quot;auto-light-header&quot;&gt;
+          &lt;div class=&quot;auto-light-heading&quot;&gt;
+            &lt;i class=&quot;auto-light-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+            &lt;div class=&quot;auto-light-label&quot;&gt;
+              &lt;strong&gt;Light&lt;/strong&gt;
+              &lt;time class=&quot;auto-elapsed&quot; role=&quot;timer&quot; aria-label=&quot;Light on for&quot; hidden&gt;00:00&lt;/time&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;button type=&quot;button&quot; class=&quot;auto-entry auto-chip cursor-interaction&quot; aria-haspopup=&quot;dialog&quot;&gt;
+            &lt;span class=&quot;auto-summary&quot;&gt;Auto · &lt;span class=&quot;auto-duration&quot;&gt;30s&lt;/span&gt;&lt;/span&gt;
+            &lt;span class=&quot;auto-chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+          &lt;/button&gt;
+          &lt;button class=&quot;auto-light-switch auto-switch-button cursor-interaction&quot; type=&quot;button&quot; role=&quot;switch&quot; aria-label=&quot;Light&quot; aria-checked=&quot;false&quot;&gt;
+            &lt;span class=&quot;auto-switch-track&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;button type=&quot;button&quot; class=&quot;auto-entry auto-row cursor-interaction&quot; aria-haspopup=&quot;dialog&quot;&gt;
+          &lt;span&gt;Auto Light &lt;span class=&quot;auto-on&quot;&gt;On&lt;/span&gt;&lt;/span&gt;
+          &lt;span class=&quot;auto-row-value&quot;&gt;&lt;span class=&quot;auto-duration&quot;&gt;30 sec&lt;/span&gt;&lt;span class=&quot;auto-chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+        &lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;auto-entry auto-about cursor-interaction&quot; aria-haspopup=&quot;dialog&quot;&gt;
+          &lt;span class=&quot;auto-summary&quot;&gt;Auto · &lt;span class=&quot;auto-duration&quot;&gt;30s&lt;/span&gt;&lt;/span&gt;
+          &lt;span class=&quot;auto-about-link&quot;&gt;&lt;span class=&quot;auto-i&quot; aria-hidden=&quot;true&quot;&gt;i&lt;/span&gt; About Auto&lt;/span&gt;
+        &lt;/button&gt;
+        &lt;div class=&quot;auto-brightness&quot; hidden&gt;
+          &lt;div class=&quot;auto-brightness-track&quot; aria-hidden=&quot;true&quot;&gt;
+            &lt;div class=&quot;auto-brightness-marks&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;auto-brightness-scale&quot; aria-hidden=&quot;true&quot;&gt;
+            &lt;span class=&quot;auto-brightness-value&quot;&gt;75%&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;input class=&quot;auto-brightness-input cursor-interaction&quot; type=&quot;range&quot; min=&quot;0&quot; max=&quot;100&quot; step=&quot;1&quot; value=&quot;75&quot; aria-label=&quot;Light brightness&quot; aria-valuetext=&quot;75 percent&quot;&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+
+      &lt;div class=&quot;auto-actions&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;■ &amp;nbsp;Hold to finish&lt;/span&gt;&lt;span&gt;❚❚&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;auto-home&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;section class=&quot;auto-settings-page&quot; aria-label=&quot;Setting&quot; hidden&gt;
+      &lt;div class=&quot;auto-status&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;7:41&lt;/span&gt;&lt;span class=&quot;auto-settings-status-icons&quot;&gt;▂▃▅▇ &lt;i&gt;&lt;/i&gt;&lt;b&gt;&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;
+      &lt;header class=&quot;auto-header auto-settings-header&quot;&gt;
+        &lt;button class=&quot;auto-nav auto-settings-back cursor-interaction&quot; type=&quot;button&quot; aria-label=&quot;Back to Pump Control&quot;&gt;&lt;span class=&quot;auto-chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;/button&gt;
+        &lt;h2&gt;Setting&lt;/h2&gt;
+      &lt;/header&gt;
+
+      &lt;div class=&quot;auto-settings-device auto-settings-card&quot;&gt;
+        &lt;div class=&quot;auto-settings-pumps&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+        &lt;div&gt;
+          &lt;strong&gt;M5 Ultra&lt;/strong&gt;
+          &lt;div class=&quot;auto-settings-battery&quot;&gt;L &lt;b&gt;100&lt;/b&gt; &lt;span&gt;R &lt;b&gt;80&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;span class=&quot;auto-chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+      &lt;/div&gt;
+
+      &lt;section class=&quot;auto-settings-section&quot; aria-label=&quot;Behavior Detection&quot;&gt;
+        &lt;h3&gt;Behavior Detection&lt;/h3&gt;
+        &lt;div class=&quot;auto-behavior-card auto-settings-card&quot;&gt;
+          &lt;div class=&quot;auto-policy-row&quot;&gt;
+            &lt;div&gt;
+              &lt;strong&gt;Light Auto-on&lt;/strong&gt;
+              &lt;p&gt;Automatically turn on the right light when pumping pauses.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;button class=&quot;auto-policy-switch auto-switch-button cursor-interaction&quot; type=&quot;button&quot; role=&quot;switch&quot; aria-label=&quot;Light Auto-on&quot; aria-checked=&quot;true&quot;&gt;
+              &lt;span class=&quot;auto-switch-track&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+            &lt;/button&gt;
+          &lt;/div&gt;
+          &lt;fieldset class=&quot;auto-settings-duration&quot;&gt;
+            &lt;legend&gt;Duration&lt;/legend&gt;
+            &lt;div class=&quot;auto-preset-options&quot;&gt;
+              &lt;button class=&quot;cursor-interaction&quot; type=&quot;button&quot; data-duration=&quot;300&quot; aria-pressed=&quot;false&quot;&gt;5 min&lt;/button&gt;
+              &lt;button class=&quot;cursor-interaction&quot; type=&quot;button&quot; data-duration=&quot;600&quot; aria-pressed=&quot;false&quot;&gt;10 min&lt;/button&gt;
+              &lt;button class=&quot;cursor-interaction&quot; type=&quot;button&quot; data-duration=&quot;900&quot; aria-pressed=&quot;false&quot;&gt;15 min&lt;/button&gt;
+              &lt;button class=&quot;cursor-interaction&quot; type=&quot;button&quot; data-duration=&quot;custom&quot; aria-pressed=&quot;true&quot; aria-haspopup=&quot;dialog&quot;&gt;Custom&lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/fieldset&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+
+      &lt;section class=&quot;auto-settings-section&quot; aria-label=&quot;General Settings&quot;&gt;
+        &lt;h3&gt;General Settings&lt;/h3&gt;
+        &lt;ul class=&quot;auto-general-list auto-settings-card&quot;&gt;
+          &lt;li&gt;&lt;span&gt;Firmware Upgrade&lt;/span&gt;&lt;span class=&quot;auto-firmware&quot;&gt;New &lt;i aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;span class=&quot;auto-chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;span&gt;Restore Factory&lt;/span&gt;&lt;span class=&quot;auto-chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;span&gt;Power Off Device&lt;/span&gt;&lt;span class=&quot;auto-chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+
+      &lt;div class=&quot;auto-settings-delete&quot;&gt;Delete&lt;/div&gt;
+      &lt;div class=&quot;auto-home&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;div class=&quot;auto-overlay&quot; hidden&gt;
+      &lt;div class=&quot;auto-scrim&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+      &lt;section class=&quot;auto-info auto-sheet&quot; lang=&quot;zh-CN&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-label=&quot;自动亮灯&quot; hidden&gt;
+        &lt;header class=&quot;auto-sheet-header&quot;&gt;
+          &lt;h3&gt;自动亮灯&lt;/h3&gt;
+          &lt;button type=&quot;button&quot; class=&quot;auto-close cursor-interaction&quot; aria-label=&quot;关闭说明&quot;&gt;×&lt;/button&gt;
+        &lt;/header&gt;
+        &lt;p&gt;暂停吸奶时，夜灯会自动亮起，并在设定时长结束后熄灭。&lt;/p&gt;
+        &lt;div class=&quot;auto-current&quot;&gt;&lt;span&gt;设定时长&lt;/span&gt;&lt;strong class=&quot;auto-duration&quot;&gt;30 秒&lt;/strong&gt;&lt;/div&gt;
+        &lt;button type=&quot;button&quot; class=&quot;auto-configure auto-primary cursor-interaction&quot;&gt;前往设置&lt;/button&gt;
+      &lt;/section&gt;
+
+      &lt;section class=&quot;auto-settings auto-sheet&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-label=&quot;Custom Duration&quot; hidden&gt;
+        &lt;header class=&quot;auto-sheet-header&quot;&gt;
+          &lt;h3&gt;Custom Duration&lt;/h3&gt;
+          &lt;button type=&quot;button&quot; class=&quot;auto-close cursor-interaction&quot; aria-label=&quot;Close custom duration&quot;&gt;×&lt;/button&gt;
+        &lt;/header&gt;
+        &lt;form novalidate&gt;
+          &lt;fieldset class=&quot;auto-duration-fields&quot;&gt;
+            &lt;legend&gt;Auto-off after&lt;/legend&gt;
+            &lt;div class=&quot;auto-inputs&quot;&gt;
+              &lt;label&gt;&lt;input name=&quot;minutes&quot; type=&quot;number&quot; inputmode=&quot;numeric&quot; min=&quot;0&quot; max=&quot;15&quot; step=&quot;1&quot; required&gt;&lt;span&gt;min&lt;/span&gt;&lt;/label&gt;
+              &lt;label&gt;&lt;input name=&quot;seconds&quot; type=&quot;number&quot; inputmode=&quot;numeric&quot; min=&quot;0&quot; max=&quot;59&quot; step=&quot;1&quot; required&gt;&lt;span&gt;sec&lt;/span&gt;&lt;/label&gt;
+            &lt;/div&gt;
+            &lt;p class=&quot;auto-range&quot;&gt;10 sec to 15 min&lt;/p&gt;
+            &lt;p class=&quot;auto-error&quot; role=&quot;alert&quot; hidden&gt;Enter a duration between 10 sec and 15 min.&lt;/p&gt;
+          &lt;/fieldset&gt;
+          &lt;button type=&quot;button&quot; class=&quot;auto-save auto-primary cursor-interaction&quot;&gt;Save&lt;/button&gt;
+        &lt;/form&gt;
+      &lt;/section&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+&lt;/template&gt;
+
+&lt;style&gt;
+  #night-light-auto-options [data-variant] {
+    box-sizing: border-box;
+    min-height: 640px;
+    padding: 12px 0;
+    align-content: start;
+    justify-items: center;
+  }
+
+  #night-light-auto-options [data-variant]:not([hidden]) { display: grid; }
+  #night-light-auto-options .auto-phone *, #night-light-auto-options .auto-phone *::before, #night-light-auto-options .auto-phone *::after { box-sizing: border-box; }
+  #night-light-auto-options .auto-phone [hidden] { display: none !important; }
+
+  #night-light-auto-options .auto-phone {
+    --app-text: #2b1723;
+    --app-quiet: #71616b;
+    --app-accent: #810d2f;
+    --app-pale: #fbebef;
+    --app-rule: #eee6ea;
+    --app-wine: linear-gradient(#790725, #a83d52);
+    position: relative;
+    width: min(355px, 100%);
+    min-height: 606px;
+    overflow: hidden;
+    color-scheme: light;
+    color: var(--app-text);
+    background: linear-gradient(#f4eae0, #f9f7f5 44%);
+    border-radius: 32px;
+    font: 500 14px/1.35 -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;
+  }
+
+  #night-light-auto-options .auto-screen { min-height: 606px; display: flex; flex-direction: column; padding: 16px 12px 7px; }
+  #night-light-auto-options button { color: inherit; font: inherit; }
+  #night-light-auto-options button:focus-visible, #night-light-auto-options input:focus-visible { outline: 2px solid var(--app-accent); outline-offset: 2px; }
+  #night-light-auto-options .auto-status { display: flex; align-items: center; justify-content: space-between; padding: 0 17px; font-weight: 650; }
+  #night-light-auto-options .auto-header { display: flex; align-items: center; justify-content: space-between; margin: 9px 0 13px; }
+  #night-light-auto-options .auto-header h2 { margin: 0; font: 650 14px/1.2 -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif; }
+  #night-light-auto-options .auto-nav { display: grid; place-items: center; width: 37px; height: 37px; border-radius: 50%; border: 1px solid #e8dfd8; background: #fff8; font-size: 20px; line-height: 1; }
+
+  #night-light-auto-options .auto-devices { display: grid; grid-template-columns: 1fr 46px 1fr; justify-items: center; margin: 0 15px 12px; text-align: center; }
+  #night-light-auto-options .auto-devices img { display: block; width: 65px; height: auto; }
+  #night-light-auto-options .auto-devices span { display: block; font-size: 11px; }
+  #night-light-auto-options .auto-devices b { padding-inline: 3px; border-radius: 3px; background: var(--app-text); color: white; font-size: 9px; }
+  #night-light-auto-options .auto-devices time { color: var(--app-quiet); font-size: 11px; }
+  #night-light-auto-options .auto-sync { align-self: center; margin-bottom: 9px; color: var(--app-accent); }
+  #night-light-auto-options .auto-sync i { display: grid; place-items: center; width: 34px; height: 34px; margin: 0 auto 3px; border-radius: 50%; background: var(--app-wine); color: white; font-style: normal; }
+
+  #night-light-auto-options .auto-boost { display: grid; grid-template-columns: auto 1fr; gap: 8px 10px; align-items: center; margin-bottom: 10px; padding: 9px 14px 11px; border-radius: 18px; background: linear-gradient(110deg,#ffe7e7,#ffd8df); font-size: 12px; }
+  #night-light-auto-options .auto-boost small { justify-self: start; padding: 2px 6px; border: 1px solid #80132f22; border-radius: 7px; font-size: 10px; }
+  #night-light-auto-options .auto-boost i { display: block; grid-column: 1 / -1; height: 6px; border-radius: 8px; background: linear-gradient(90deg,#b9535e 0 18%,#efb4b5 18% 26%,#ff9c79 26% 31%,#b9535e 31% 64%,#efb4b5 64% 74%,#ff9c79 74% 78%,#b9535e 78%); }
+
+  #night-light-auto-options .auto-levels { margin-bottom: 10px; padding: 11px 14px 10px; background: white; border-radius: 18px; font-size: 12px; }
+  #night-light-auto-options .auto-level-heading span { color: var(--app-quiet); font-size: 11px; }
+  #night-light-auto-options .auto-level-grid { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 7px; text-align: center; color: var(--app-quiet); font-size: 10px; }
+  #night-light-auto-options .auto-scale { position: relative; width: 56px; height: 52px; margin: 5px auto 0; background: repeating-linear-gradient(#d0c5ca 0 1px, transparent 1px 10px) center / 21px 100% no-repeat; }
+  #night-light-auto-options .auto-scale b { position: absolute; display: grid; place-items: center; inset: 16px 2px auto; height: 23px; border-radius: 20px; background: var(--app-wine); color: white; box-shadow: 0 3px 7px #7304252b; font-size: 12px; }
+  #night-light-auto-options .auto-scale-both { background-color: #f4f2f3; border-radius: 11px; }
+  #night-light-auto-options .auto-scale-both b { background: white; color: var(--app-text); box-shadow: 0 3px 6px #25091813; }
+  #night-light-auto-options .auto-level-grid &gt; :last-child b { top: 7px; }
+
+  #night-light-auto-options .auto-light { background: white; border-radius: 20px; }
+  #night-light-auto-options .auto-light-header { display: flex; align-items: center; gap: 9px; min-height: 56px; padding: 5px 12px 5px 15px; }
+  #night-light-auto-options .auto-light-heading { display: flex; align-items: center; gap: 9px; margin-right: auto; }
+  #night-light-auto-options .auto-light-label { display: grid; gap: 1px; white-space: nowrap; }
+  #night-light-auto-options .auto-light-icon { flex: 0 0 11px; position: relative; height: 13px; margin: -3px 1px 0; border: 1.3px solid; border-radius: 54% 54% 43% 43%; }
+  #night-light-auto-options .auto-light-icon::after { content: &quot;&quot;; position: absolute; bottom: -4px; left: 2px; width: 5px; height: 4px; border: 1px solid; border-radius: 0 0 2px 2px; }
+  #night-light-auto-options .auto-elapsed { color: var(--app-quiet); font-size: 11px; line-height: 1.15; font-variant-numeric: tabular-nums; }
+  #night-light-auto-options .auto-chip, #night-light-auto-options .auto-row, #night-light-auto-options .auto-about { display: none; }
+  #night-light-auto-options [data-variant=&quot;同行胶囊&quot;] .auto-chip { display: inline-flex; }
+  #night-light-auto-options [data-variant=&quot;独立设置行&quot;] .auto-row, #night-light-auto-options [data-variant=&quot;文字说明入口&quot;] .auto-about { display: flex; }
+
+  #night-light-auto-options .auto-chip {
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 4px;
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+    color: var(--app-accent);
+    white-space: nowrap;
+  }
+  #night-light-auto-options .auto-chevron { display: inline-block; width: 5px; height: 5px; margin: 0 2px 0 4px; border: solid currentColor; border-width: 1.4px 1.4px 0 0; transform: rotate(45deg); }
+  #night-light-auto-options .auto-chip .auto-chevron { flex: none; width: 7px; height: 7px; margin: 0 2px 0 0; border-width: 2px 2px 0 0; }
+  #night-light-auto-options .auto-row, #night-light-auto-options .auto-about { align-items: center; justify-content: space-between; gap: 8px; width: calc(100% - 28px); min-height: 48px; margin: 0 14px; padding: 0 2px; border: 0; border-top: 1px solid var(--app-rule); background: transparent; text-align: left; white-space: nowrap; }
+  #night-light-auto-options .auto-row-value { display: inline-flex; align-items: center; gap: 4px; color: var(--app-accent); font-size: 13px; font-weight: 650; }
+  #night-light-auto-options .auto-on, #night-light-auto-options .auto-summary { margin-left: 4px; padding: 3px 7px; border-radius: 12px; background: var(--app-pale); color: var(--app-accent); font-size: 11px; font-weight: 650; }
+  #night-light-auto-options .auto-summary { margin-left: 0; font-size: 12px; }
+  #night-light-auto-options .auto-about-link { display: inline-flex; align-items: center; gap: 5px; color: var(--app-accent); font-size: 12px; text-decoration: underline; text-underline-offset: 2px; }
+  #night-light-auto-options .auto-i { display: grid; place-items: center; width: 14px; height: 14px; border-radius: 50%; border: 1px solid; font: 650 10px/1 -apple-system, BlinkMacSystemFont, sans-serif; }
+
+  #night-light-auto-options .auto-switch-button { flex: 0 0 44px; height: 44px; display: grid; place-items: center; padding: 0; border: 0; border-radius: 22px; background: transparent; }
+  #night-light-auto-options .auto-switch-track { position: relative; width: 38px; height: 22px; border-radius: 12px; background: #eeebed; transition: background-color 160ms ease; }
+  #night-light-auto-options .auto-switch-track::before { content: &quot;&quot;; position: absolute; inset: 2px auto 2px 2px; width: 18px; border-radius: 50%; background: white; box-shadow: 0 1px 3px #34242b35; transition: transform 160ms ease; }
+  #night-light-auto-options .auto-switch-button[aria-checked=&quot;true&quot;] .auto-switch-track { background: #790725; }
+  #night-light-auto-options .auto-switch-button[aria-checked=&quot;true&quot;] .auto-switch-track::before { transform: translateX(16px); }
+
+  #night-light-auto-options .auto-brightness {
+    --brightness: .75;
+    --thumb-size: 23px;
+    --rail-size: 10px;
+    --rail-center: 26px;
+    --track-fill: calc(var(--thumb-size) / 2 + (100% - var(--thumb-size)) * var(--brightness));
+    position: relative;
+    height: 48px;
+    margin: -7px 14px 0;
+  }
+  #night-light-auto-options .auto-brightness-track { position: absolute; inset: calc(var(--rail-center) - var(--rail-size) / 2) 0 auto; height: var(--rail-size); border-radius: 8px; background: linear-gradient(90deg,#ffbdcc,#850d2f) 0 / var(--track-fill) 100% no-repeat, #efeeef; }
+  #night-light-auto-options .auto-brightness-marks { position: absolute; inset: 0 calc((var(--thumb-size) - 5px) / 2); display: flex; align-items: center; justify-content: space-between; }
+  #night-light-auto-options .auto-brightness-marks i { width: 5px; height: 5px; border-radius: 50%; background: #b9b3b6; }
+  #night-light-auto-options .auto-brightness-marks i.is-filled { background: white; }
+  #night-light-auto-options .auto-brightness-scale { position: absolute; inset: 0 calc(var(--thumb-size) / 2) auto; pointer-events: none; }
+  #night-light-auto-options .auto-brightness-value { position: absolute; top: 0; left: calc(100% * var(--brightness)); transform: translateX(-50%); color: var(--app-quiet); font-size: 12px; line-height: 1.2; font-variant-numeric: tabular-nums; }
+  #night-light-auto-options .auto-brightness-input { position: absolute; top: 4px; left: 0; appearance: none; width: 100%; height: 44px; margin: 0; padding: 0; border: 0; border-radius: 8px; background: transparent; touch-action: pan-y; }
+  #night-light-auto-options .auto-brightness-input::-webkit-slider-runnable-track { height: var(--rail-size); background: transparent; }
+  #night-light-auto-options .auto-brightness-input::-moz-range-track { height: var(--rail-size); background: transparent; }
+  #night-light-auto-options .auto-brightness-input::-webkit-slider-thumb { appearance: none; width: var(--thumb-size); height: var(--thumb-size); margin-top: calc((var(--rail-size) - var(--thumb-size)) / 2); border: 1px solid #efedef; border-radius: 50%; background: white; box-shadow: 0 2px 4px #1d17243d; }
+  #night-light-auto-options .auto-brightness-input::-moz-range-thumb { width: var(--thumb-size); height: var(--thumb-size); border: 1px solid #efedef; border-radius: 50%; background: white; box-shadow: 0 2px 4px #1d17243d; }
+  @media (prefers-reduced-motion: reduce) {
+    #night-light-auto-options .auto-switch-track, #night-light-auto-options .auto-switch-track::before { transition: none; }
+  }
+
+  #night-light-auto-options .auto-actions { display: grid; grid-template-columns: 1fr 42px; gap: 6px; margin: auto 15px 0; padding-top: 15px; }
+  #night-light-auto-options .auto-actions span { display: grid; place-items: center; height: 42px; border-radius: 36px; background: linear-gradient(#f1a1ae,#ffc5cf); color: var(--app-accent); font-size: 13px; }
+  #night-light-auto-options .auto-actions span + span { background: var(--app-wine); color: white; letter-spacing: -2px; padding-right: 2px; }
+  #night-light-auto-options .auto-home { width: 108px; height: 4px; margin: 12px auto 0; border-radius: 4px; background: #191315; }
+
+  #night-light-auto-options .auto-settings-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 606px;
+    padding: 19px 14px 8px;
+    background: #f8f6f5;
+  }
+
+  #night-light-auto-options .auto-settings-status-icons { display: flex; align-items: center; gap: 6px; font-size: 9px; line-height: 1; }
+  #night-light-auto-options .auto-settings-status-icons i { width: 8px; height: 8px; border-top: 2px solid; border-left: 2px solid; border-radius: 100% 0 0; transform: rotate(45deg); }
+  #night-light-auto-options .auto-settings-status-icons b { width: 20px; height: 9px; border: 1px solid #887983; border-radius: 3px; background: currentColor; box-shadow: inset 0 0 0 1px #f8f6f5; }
+  #night-light-auto-options .auto-settings-header { display: grid; grid-template-columns: 44px 1fr 44px; margin: 14px 0 18px; text-align: center; }
+  #night-light-auto-options .auto-settings-header h2 { font-size: 15px; }
+  #night-light-auto-options .auto-settings-back { width: 44px; height: 44px; background: linear-gradient(#efedec, #fff); }
+  #night-light-auto-options .auto-settings-back .auto-chevron { width: 8px; height: 8px; margin: 0; transform: rotate(-135deg); }
+
+  #night-light-auto-options .auto-settings-card { border-radius: 19px; background: white; }
+  #night-light-auto-options .auto-settings-device {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 13px;
+    min-height: 72px;
+    padding: 11px 16px;
+  }
+  #night-light-auto-options .auto-settings-pumps { display: flex; gap: 2px; }
+  #night-light-auto-options .auto-settings-pumps img { display: block; width: 33px; height: auto; }
+  #night-light-auto-options .auto-settings-device strong { font-size: 14px; }
+  #night-light-auto-options .auto-settings-battery { display: flex; align-items: center; gap: 4px; margin-top: 7px; font-size: 10px; }
+  #night-light-auto-options .auto-settings-battery span { margin-left: 7px; }
+  #night-light-auto-options .auto-settings-battery b { padding: 1px 3px; border-radius: 4px; background: var(--app-text); color: white; font-size: 9px; }
+  #night-light-auto-options .auto-settings-device .auto-chevron, #night-light-auto-options .auto-general-list .auto-chevron { width: 7px; height: 7px; color: #958892; }
+
+  #night-light-auto-options .auto-settings-section { margin-top: 21px; }
+  #night-light-auto-options .auto-settings-section h3 { margin: 0 0 12px 7px; color: var(--app-quiet); font-size: 12px; font-weight: 500; }
+  #night-light-auto-options .auto-behavior-card { padding: 13px 14px; }
+  #night-light-auto-options .auto-policy-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  #night-light-auto-options .auto-policy-row strong, #night-light-auto-options .auto-settings-duration legend { font-size: 13px; font-weight: 650; }
+  #night-light-auto-options .auto-policy-row p { margin: 3px 0 0; color: var(--app-quiet); font-size: 11px; line-height: 1.35; }
+  #night-light-auto-options .auto-settings-duration { min-width: 0; margin: 13px 0 0; padding: 0; border: 0; }
+  #night-light-auto-options .auto-settings-duration legend { padding: 0; }
+  #night-light-auto-options .auto-settings-duration:disabled { opacity: .52; }
+  #night-light-auto-options .auto-preset-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; margin-top: 11px; }
+  #night-light-auto-options .auto-preset-options button {
+    min-height: 44px;
+    padding: 5px;
+    border: 1px solid transparent;
+    border-radius: 25px;
+    background: #f8f5f6;
+    color: #58434e;
+    font-size: 12px;
+    font-weight: 560;
+    white-space: nowrap;
+  }
+  #night-light-auto-options .auto-preset-options button[aria-pressed=&quot;true&quot;] { border-color: var(--app-accent); background: #fcf5f7; color: var(--app-accent); }
+
+  #night-light-auto-options .auto-general-list { margin: 0; padding: 0 14px; list-style: none; }
+  #night-light-auto-options .auto-general-list li { display: flex; align-items: center; gap: 10px; min-height: 42px; font-size: 12px; }
+  #night-light-auto-options .auto-general-list li + li { border-top: 1px solid #f1edef; }
+  #night-light-auto-options .auto-general-list li &gt; :first-child { margin-right: auto; }
+  #night-light-auto-options .auto-firmware { display: flex; align-items: center; gap: 6px; color: var(--app-quiet); }
+  #night-light-auto-options .auto-firmware i { width: 7px; height: 7px; border-radius: 50%; background: #f14b52; }
+  #night-light-auto-options .auto-settings-delete { display: grid; place-items: center; min-height: 45px; margin: 18px 0 12px; border-radius: 25px; background: white; color: #d72c38; }
+  #night-light-auto-options .auto-settings-page .auto-home { margin-top: auto; }
+
+  #night-light-auto-options .auto-overlay { position: absolute; inset: 0; z-index: 1; display: grid; align-items: end; }
+  #night-light-auto-options .auto-scrim { position: absolute; inset: 0; background: #2e162660; }
+  #night-light-auto-options .auto-sheet { position: relative; padding: 15px 17px 19px; background: #fffafb; border-radius: 24px 24px 0 0; }
+  #night-light-auto-options .auto-sheet-header { display: flex; gap: 10px; align-items: center; justify-content: space-between; margin: 0 0 9px; }
+  #night-light-auto-options .auto-sheet-header h3 { margin: 0; font-size: 17px; font-weight: 660; }
+  #night-light-auto-options .auto-sheet p { margin: 0 0 13px; font-size: 13px; color: var(--app-quiet); line-height: 1.5; }
+  #night-light-auto-options .auto-close { flex: 0 0 44px; height: 44px; border: 0; border-radius: 50%; background: radial-gradient(circle,#f1e9ed 51%,transparent 53%); color: var(--app-text); font-size: 19px; }
+  #night-light-auto-options .auto-current { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 44px; padding: 8px 11px; border-radius: 10px; background: #f7f0f3; font-size: 13px; }
+  #night-light-auto-options .auto-current strong { color: var(--app-accent); font-variant-numeric: tabular-nums; }
+  #night-light-auto-options .auto-primary { width: 100%; min-height: 44px; margin-top: 14px; padding: 8px 12px; border: 0; border-radius: 28px; background: var(--app-wine); color: white; font-weight: 650; }
+  #night-light-auto-options .auto-duration-fields { min-width: 0; margin: 14px 0 0; padding: 0; border: 0; }
+  #night-light-auto-options .auto-duration-fields legend { margin-bottom: 6px; font-size: 13px; }
+  #night-light-auto-options .auto-inputs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  #night-light-auto-options .auto-inputs label { display: flex; align-items: center; gap: 5px; padding: 0 8px; border: 1px solid #e8dce2; border-radius: 9px; background: #fff; font-size: 12px; }
+  #night-light-auto-options .auto-inputs input { min-width: 0; width: 100%; min-height: 42px; padding: 0 3px; border: 0; color: var(--app-text); background: transparent; font: inherit; font-size: 16px; }
+  #night-light-auto-options .auto-range, #night-light-auto-options .auto-error { margin: 5px 0 0; font-size: 12px; }
+  #night-light-auto-options .auto-error { color: var(--app-accent); }
+&lt;/style&gt;
+
+&lt;script&gt;
+(() =&gt; {
+  const root = document.getElementById(&quot;night-light-auto-options&quot;);
+  const template = document.getElementById(&quot;night-light-auto-template&quot;);
+  const views = Array.from(root.querySelectorAll(&quot;[data-variant]&quot;));
+  const setting = { enabled: true, duration: 30 };
+
+  function formatDuration(duration, minuteUnit, secondUnit) {
+    const minutes = Math.floor(duration / 60);
+    const seconds = duration % 60;
+    const minuteText = minutes ? `${minutes}${minuteUnit}` : &quot;&quot;;
+    const secondText = seconds ? `${seconds}${secondUnit}` : &quot;&quot;;
+    return [minuteText, secondText].filter(Boolean).join(&quot; &quot;);
+  }
+
+  views.forEach((view) =&gt; view.append(template.content.cloneNode(true)));
+
+  function renderSetting() {
+    root.querySelectorAll(&quot;.auto-entry&quot;).forEach((entry) =&gt; { entry.hidden = !setting.enabled; });
+    root.querySelectorAll(&quot;.auto-policy-switch&quot;).forEach((button) =&gt; {
+      button.setAttribute(&quot;aria-checked&quot;, String(setting.enabled));
+    });
+    root.querySelectorAll(&quot;.auto-settings-duration&quot;).forEach((fieldset) =&gt; {
+      fieldset.disabled = !setting.enabled;
+      const preset = fieldset.querySelector(`[data-duration=&quot;${setting.duration}&quot;]`);
+      const selected = preset ?? fieldset.querySelector(&#x27;[data-duration=&quot;custom&quot;]&#x27;);
+      fieldset.querySelectorAll(&quot;[data-duration]&quot;).forEach((button) =&gt; {
+        button.setAttribute(&quot;aria-pressed&quot;, String(button === selected));
+      });
+    });
+    root.querySelectorAll(&quot;.auto-duration&quot;).forEach((label) =&gt; {
+      if (label.closest(&quot;.auto-info&quot;)) {
+        label.textContent = formatDuration(setting.duration, &quot; 分钟&quot;, &quot; 秒&quot;);
+      } else if (label.closest(&quot;.auto-summary&quot;)) {
+        label.textContent = formatDuration(setting.duration, &quot;m&quot;, &quot;s&quot;);
+      } else {
+        label.textContent = formatDuration(setting.duration, &quot; min&quot;, &quot; sec&quot;);
+      }
+    });
+  }
+
+  views.forEach((view) =&gt; {
+    const screen = view.querySelector(&quot;.auto-screen&quot;);
+    const settingsPage = view.querySelector(&quot;.auto-settings-page&quot;);
+    const back = view.querySelector(&quot;.auto-settings-back&quot;);
+    const settingsPumps = view.querySelector(&quot;.auto-settings-pumps&quot;);
+    const policySwitch = view.querySelector(&quot;.auto-policy-switch&quot;);
+    const durationChoices = view.querySelectorAll(&quot;[data-duration]&quot;);
+    const overlay = view.querySelector(&quot;.auto-overlay&quot;);
+    const info = view.querySelector(&quot;.auto-info&quot;);
+    const customDuration = view.querySelector(&quot;.auto-settings&quot;);
+    const gear = view.querySelector(&quot;.auto-gear&quot;);
+    const form = customDuration.querySelector(&quot;form&quot;);
+    const { minutes, seconds } = form.elements;
+    const fields = form.querySelector(&quot;fieldset&quot;);
+    const error = form.querySelector(&quot;.auto-error&quot;);
+    const lightSwitch = view.querySelector(&quot;.auto-light-switch&quot;);
+    const elapsed = view.querySelector(&quot;.auto-elapsed&quot;);
+    const brightness = view.querySelector(&quot;.auto-brightness&quot;);
+    const brightnessInput = view.querySelector(&quot;.auto-brightness-input&quot;);
+    const brightnessValue = view.querySelector(&quot;.auto-brightness-value&quot;);
+    const marks = view.querySelectorAll(&quot;.auto-brightness-marks i&quot;);
+    let activeDialog;
+    let opener;
+    let settingsOpener;
+    let interval;
+
+    view.querySelectorAll(&quot;.auto-devices img&quot;).forEach((img) =&gt; settingsPumps.append(img.cloneNode()));
+
+    function openDialog(panel, trigger) {
+      opener = trigger;
+      overlay.hidden = false;
+      screen.inert = true;
+      settingsPage.inert = true;
+      info.hidden = panel !== info;
+      customDuration.hidden = panel !== customDuration;
+      activeDialog = panel;
+      panel.querySelector(&quot;.auto-close&quot;).focus();
+    }
+
+    function closeDialog() {
+      if (!activeDialog) return;
+      activeDialog.hidden = true;
+      activeDialog = undefined;
+      overlay.hidden = true;
+      screen.inert = false;
+      settingsPage.inert = false;
+      opener.focus({ preventScroll: true });
+    }
+
+    function openSettingsPage(trigger) {
+      closeDialog();
+      settingsOpener = trigger;
+      screen.hidden = true;
+      settingsPage.hidden = false;
+      back.focus();
+    }
+
+    view.querySelectorAll(&quot;.auto-entry&quot;).forEach((entry) =&gt; {
+      entry.addEventListener(&quot;click&quot;, () =&gt; openDialog(info, entry));
+    });
+
+    gear.addEventListener(&quot;click&quot;, () =&gt; openSettingsPage(gear));
+    view.querySelector(&quot;.auto-configure&quot;).addEventListener(&quot;click&quot;, () =&gt; openSettingsPage(opener));
+    back.addEventListener(&quot;click&quot;, () =&gt; {
+      settingsPage.hidden = true;
+      screen.hidden = false;
+      (settingsOpener.hidden ? gear : settingsOpener).focus();
+    });
+
+    policySwitch.addEventListener(&quot;click&quot;, () =&gt; {
+      setting.enabled = !setting.enabled;
+      renderSetting();
+    });
+
+    durationChoices.forEach((button) =&gt; {
+      button.addEventListener(&quot;click&quot;, () =&gt; {
+        if (button.dataset.duration === &quot;custom&quot;) {
+          minutes.value = Math.floor(setting.duration / 60);
+          seconds.value = setting.duration % 60;
+          error.hidden = true;
+          openDialog(customDuration, button);
+          return;
+        }
+
+        setting.duration = Number(button.dataset.duration);
+        renderSetting();
+      });
+    });
+
+    view.querySelectorAll(&quot;.auto-close, .auto-scrim&quot;).forEach((element) =&gt; element.addEventListener(&quot;click&quot;, closeDialog));
+    overlay.addEventListener(&quot;keydown&quot;, (event) =&gt; {
+      if (event.key === &quot;Escape&quot;) {
+        event.stopPropagation();
+        closeDialog();
+      }
+
+      if (event.key === &quot;Tab&quot;) {
+        const focusable = activeDialog.querySelectorAll(&quot;button, input:not(:disabled)&quot;);
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey &amp;&amp; document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey &amp;&amp; document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    fields.addEventListener(&quot;input&quot;, () =&gt; { error.hidden = true; });
+    function saveSettings() {
+      const duration = minutes.valueAsNumber * 60 + seconds.valueAsNumber;
+      if (!minutes.validity.valid || !seconds.validity.valid || duration &lt; 10 || duration &gt; 900) {
+        error.hidden = false;
+        minutes.focus();
+        return;
+      }
+
+      setting.duration = duration;
+      renderSetting();
+      closeDialog();
+    }
+
+    form.querySelector(&quot;.auto-save&quot;).addEventListener(&quot;click&quot;, saveSettings);
+    form.addEventListener(&quot;keydown&quot;, (event) =&gt; {
+      if (event.key === &quot;Enter&quot; &amp;&amp; event.target.matches(&#x27;input[type=&quot;number&quot;]&#x27;)) {
+        event.preventDefault();
+        saveSettings();
+      }
+    });
+
+    function renderBrightness() {
+      const value = brightnessInput.valueAsNumber;
+      brightness.style.setProperty(&quot;--brightness&quot;, value / 100);
+      brightnessValue.textContent = `${value}%`;
+      brightnessInput.setAttribute(&quot;aria-valuetext&quot;, `${value} percent`);
+      marks.forEach((mark, index) =&gt; mark.classList.toggle(&quot;is-filled&quot;, value &gt;= index * 25));
+    }
+
+    brightnessInput.addEventListener(&quot;input&quot;, renderBrightness);
+    renderBrightness();
+
+    lightSwitch.addEventListener(&quot;click&quot;, () =&gt; {
+      const on = lightSwitch.getAttribute(&quot;aria-checked&quot;) === &quot;false&quot;;
+      lightSwitch.setAttribute(&quot;aria-checked&quot;, String(on));
+      elapsed.hidden = !on;
+      brightness.hidden = !on;
+      window.clearInterval(interval);
+      if (on) {
+        const start = performance.now();
+        const update = () =&gt; {
+          const total = Math.floor((performance.now() - start) / 1000);
+          elapsed.textContent = [Math.floor(total / 60), total % 60].map((value) =&gt; String(value).padStart(2, &quot;0&quot;)).join(&quot;:&quot;);
+        };
+        update();
+        interval = window.setInterval(update, 200);
+      }
+    });
+  });
+
+  renderSetting();
+})();
+&lt;/script&gt;
+
+&lt;script&gt;
+(() =&gt; {
+  let positioningReady = window.FloatingUIDOM
+    ? Promise.resolve(window.FloatingUIDOM)
+    : null;
+  const loadScript = (src) =&gt; new Promise((resolve, reject) =&gt; {
+    const script = document.createElement(&quot;script&quot;);
+    script.src = src;
+    script.onload = resolve;
+    script.onerror = () =&gt; {
+      script.remove();
+      reject(new Error(&quot;Could not load tooltip positioning&quot;));
+    };
+    document.head.appendChild(script);
+  });
+  const loadPositioning = async () =&gt; {
+    const domUrl = &quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;;
+    const preload = document.createElement(&quot;link&quot;);
+    preload.rel = &quot;preload&quot;;
+    preload.as = &quot;script&quot;;
+    preload.href = domUrl;
+    document.head.appendChild(preload);
+    try {
+      if (window.FloatingUICore == null) {
+        await loadScript(&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;);
+      }
+      await loadScript(domUrl);
+      return window.FloatingUIDOM;
+    } finally {
+      preload.remove();
+    }
+  };
+  const getPositioning = () =&gt; positioningReady ??= loadPositioning().catch((error) =&gt; {
+    positioningReady = null;
+    throw error;
+  });
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+  let lastPointerWasTouch = false;
+  let pinnedByTouch = false;
+
+  const getTrigger = (event) =&gt; {
+    for (const target of event.composedPath()) {
+      if (target?.nodeType === Node.ELEMENT_NODE) {
+        const trigger = target.closest(&quot;[data-tooltip]&quot;);
+        if (trigger) return trigger;
+      }
+    }
+    return null;
+  };
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    pinnedByTouch = false;
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating, { computePosition, flip, offset, shift, size }) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    const request = positionRequest;
+    void getPositioning().then((positioning) =&gt; {
+      if (request !== positionRequest || !trigger.isConnected) return;
+      autoUpdateCleanup = positioning.autoUpdate(trigger, floating, () =&gt; {
+        updatePosition(trigger, floating, positioning);
+      });
+    }).catch(() =&gt; {
+      if (request === positionRequest) closeTooltip(false);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handlePointer = (event) =&gt; {
+    lastPointerWasTouch =
+      event.type === &quot;pointerdown&quot; &amp;&amp; event.pointerType === &quot;touch&quot;;
+  };
+  const handleTouchClick = (event) =&gt; {
+    const isTouch = event.pointerType === &quot;touch&quot; || lastPointerWasTouch;
+    lastPointerWasTouch = false;
+    if (!isTouch || event.detail === 0) {
+      return;
+    }
+    const trigger = getTrigger(event);
+    if (
+      trigger == null ||
+      !trigger.isConnected ||
+      getContent(trigger).length === 0 ||
+      (pinnedByTouch &amp;&amp; activeTrigger === trigger)
+    ) {
+      if (pinnedByTouch) {
+        closeTooltip();
+      }
+      return;
+    }
+    openTooltip(trigger);
+    pinnedByTouch = activeTrigger === trigger;
+    window.setTimeout(() =&gt; {
+      if (activeTrigger === trigger &amp;&amp; !trigger.isConnected) {
+        closeTooltip(false);
+      }
+    }, 0);
+  };
+  const handleLeave = (event) =&gt; {
+    if (pinnedByTouch) {
+      return;
+    }
+    const trigger = getTrigger(event);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    lastPointerWasTouch = false;
+    const trigger = getTrigger(event);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handlers = {
+    pointerover: handlePointerOpen,
+    pointerdown: handlePointer,
+    pointercancel: handlePointer,
+    click: handleTouchClick,
+    pointerout: handleLeave,
+    focusin: handleFocusIn,
+    focusout: handleLeave,
+    keydown: handleKeyDown,
+    contextmenu: handleContextMenu,
+  };
+  const roots = new Map();
+  const handledEvents = new WeakSet();
+  const handleEvent = (event) =&gt; {
+    if (handledEvents.has(event)) return;
+    handledEvents.add(event);
+    handlers[event.type](event);
+  };
+  const discoverRoots = (node) =&gt; {
+    if (node.shadowRoot) listen(node.shadowRoot);
+    for (const element of node.querySelectorAll(&quot;*&quot;)) {
+      if (element.shadowRoot) listen(element.shadowRoot);
+    }
+  };
+  const listen = (root) =&gt; {
+    if (roots.has(root)) return;
+    for (const type of Object.keys(handlers)) root.addEventListener(type, handleEvent);
+    const observer = new window.MutationObserver((records) =&gt; {
+      for (const { addedNodes } of records) {
+        for (const node of addedNodes) {
+          if (node.nodeType === Node.ELEMENT_NODE) discoverRoots(node);
+        }
+      }
+      for (const [root, cleanup] of roots) {
+        if (root.host &amp;&amp; !root.host.isConnected) {
+          cleanup();
+          roots.delete(root);
+        }
+      }
+      if (activeTrigger &amp;&amp; !activeTrigger.isConnected) closeTooltip(false);
+    });
+    observer.observe(root, { childList: true, subtree: true });
+    roots.set(root, () =&gt; {
+      observer.disconnect();
+      for (const type of Object.keys(handlers)) root.removeEventListener(type, handleEvent);
+    });
+    discoverRoots(root);
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    lastPointerWasTouch = false;
+    for (const cleanup of roots.values()) cleanup();
+    roots.clear();
+    tooltip = null;
+  };
+
+  // Events between children of one shadow root never reach the document.
+  listen(document);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-tabs&quot;&gt;
+(() =&gt; {
+  const selector = &#x27;.nav[role=&quot;tablist&quot;] [role=&quot;tab&quot;]&#x27;;
+  const disabled = &#x27;:disabled,[aria-disabled=&quot;true&quot;]&#x27;;
+  const selectTab = (selected) =&gt; {
+    const panelId = selected.getAttribute(&quot;aria-controls&quot;);
+    for (const tab of selected.closest(&#x27;[role=&quot;tablist&quot;]&#x27;).querySelectorAll(&#x27;[role=&quot;tab&quot;]&#x27;)) {
+      const active = tab === selected;
+      tab.classList.toggle(&quot;active&quot;, active);
+      tab.setAttribute(&quot;aria-selected&quot;, String(active));
+      const id = tab.getAttribute(&quot;aria-controls&quot;);
+      const panel = id &amp;&amp; document.getElementById(id);
+      if (panel != null) {
+        panel.hidden = id !== panelId;
+        if (!panel.hidden &amp;&amp; selected.id) {
+          panel.setAttribute(&quot;aria-labelledby&quot;, selected.id);
+        }
+      }
+    }
+  };
+  const interact = (event) =&gt; {
+    const tab = event.target?.closest?.(selector);
+    if (event.defaultPrevented || tab == null || tab.matches(disabled)) {
+      return;
+    }
+    if (event.type === &quot;click&quot;) {
+      selectTab(tab);
+      return;
+    }
+    const tabs = Array.from(
+      tab.closest(&#x27;[role=&quot;tablist&quot;]&#x27;).querySelectorAll(&#x27;[role=&quot;tab&quot;]&#x27;),
+    ).filter((candidate) =&gt; !candidate.matches(disabled));
+    const current = tabs.indexOf(tab);
+    let next;
+    if (event.key === &quot;ArrowRight&quot; || event.key === &quot;ArrowDown&quot;) {
+      next = (current + 1) % tabs.length;
+    } else if (event.key === &quot;ArrowLeft&quot; || event.key === &quot;ArrowUp&quot;) {
+      next = (current + tabs.length - 1) % tabs.length;
+    } else if (event.key === &quot;Home&quot;) {
+      next = 0;
+    } else if (event.key === &quot;End&quot;) {
+      next = tabs.length - 1;
+    } else {
+      return;
+    }
+    event.preventDefault();
+    tabs[next].focus();
+    selectTab(tabs[next]);
+  };
+
+  for (const list of document.querySelectorAll(&#x27;.nav[role=&quot;tablist&quot;]&#x27;)) {
+    const selected =
+      list.querySelector(&#x27;[role=&quot;tab&quot;][aria-selected=&quot;true&quot;]&#x27;) ??
+      list.querySelector(&#x27;[role=&quot;tab&quot;].active&#x27;) ??
+      list.querySelector(&#x27;[role=&quot;tab&quot;]&#x27;);
+    if (selected != null) {
+      selectTab(selected);
+    }
+  }
+  document.addEventListener(&quot;click&quot;, interact);
+  document.addEventListener(&quot;keydown&quot;, interact);
+  window.addEventListener(&quot;pagehide&quot;, () =&gt; {
+    document.removeEventListener(&quot;click&quot;, interact);
+    document.removeEventListener(&quot;keydown&quot;, interact);
+  }, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-carousel&quot;&gt;
+  (() =&gt; {
+    for (const root of document.querySelectorAll(&quot;.viz-carousel&quot;)) {
+      const panels = Array.from(
+        root.querySelectorAll(&quot;:scope &gt; [data-variant]&quot;),
+      );
+      if (panels.length === 0) {
+        continue;
+      }
+      root.setAttribute(&quot;role&quot;, &quot;group&quot;);
+      panels.forEach((panel, index) =&gt; {
+        panel.hidden = index !== 0;
+        panel.setAttribute(&quot;role&quot;, &quot;group&quot;);
+        if (!panel.hasAttribute(&quot;aria-label&quot;)) {
+          panel.setAttribute(&quot;aria-label&quot;, panel.dataset.variant);
+        }
+      });
+      root.dataset.activeVariant = panels[0].dataset.variant;
+      if (panels.length === 1) {
+        continue;
+      }
+
+      const controls = document.createElement(&quot;div&quot;);
+      controls.className = &quot;viz-carousel-controls&quot;;
+      // Portable copy of the settings dropdown&#x27;s legacy glyph; no 14px icon-package preset matches it.
+      // https://github.com/openai/openai/blob/master/codex/codex-apps/webview/src/icons/chevron.svg
+      controls.innerHTML = `
+      &lt;button type=&quot;button&quot; class=&quot;viz-carousel-previous cursor-interaction&quot;&gt;&lt;i data-lucide=&quot;chevron-left&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;details class=&quot;viz-carousel-picker&quot;&gt;
+        &lt;summary class=&quot;cursor-interaction&quot;&gt;
+          &lt;span class=&quot;viz-carousel-count tabular-nums&quot;&gt;&lt;/span&gt;
+          &lt;span class=&quot;viz-carousel-name&quot;&gt;&lt;/span&gt;
+          &lt;svg class=&quot;viz-carousel-caret&quot; width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 20 21&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;
+            &lt;path d=&quot;M15.2793 7.71101C15.539 7.45131 15.961 7.45131 16.2207 7.71101C16.4804 7.97071 16.4804 8.39272 16.2207 8.65242L10.4707 14.4024C10.211 14.6621 9.78902 14.6621 9.52932 14.4024L3.77932 8.65242L3.69436 8.54792C3.52385 8.28979 3.55205 7.93828 3.77932 7.71101C4.00659 7.48374 4.3581 7.45554 4.61623 7.62605L4.72073 7.71101L10 12.9903L15.2793 7.71101Z&quot; fill=&quot;currentColor&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;0.6&quot; /&gt;
+          &lt;/svg&gt;
+        &lt;/summary&gt;
+        &lt;div class=&quot;viz-carousel-options&quot;&gt;&lt;/div&gt;
+      &lt;/details&gt;
+      &lt;button type=&quot;button&quot; class=&quot;viz-carousel-next cursor-interaction&quot;&gt;&lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;`;
+      const previous = controls.querySelector(&quot;.viz-carousel-previous&quot;);
+      const next = controls.querySelector(&quot;.viz-carousel-next&quot;);
+      const picker = controls.querySelector(&quot;.viz-carousel-picker&quot;);
+      const summary = picker.querySelector(&quot;summary&quot;);
+      const count = controls.querySelector(&quot;.viz-carousel-count&quot;);
+      const name = controls.querySelector(&quot;.viz-carousel-name&quot;);
+      const options = controls.querySelector(&quot;.viz-carousel-options&quot;);
+      const status = document.createElement(&quot;span&quot;);
+      status.className = &quot;sr-only&quot;;
+      status.setAttribute(&quot;role&quot;, &quot;status&quot;);
+      status.setAttribute(&quot;aria-live&quot;, &quot;polite&quot;);
+      status.setAttribute(&quot;aria-atomic&quot;, &quot;true&quot;);
+      previous.setAttribute(
+        &quot;aria-label&quot;,
+        root.dataset.previousLabel ?? &quot;Previous variant&quot;,
+      );
+      next.setAttribute(&quot;aria-label&quot;, root.dataset.nextLabel ?? &quot;Next variant&quot;);
+
+      let active = 0;
+      let mousePointerId = null;
+      let summaryPointerHandled = false;
+      summary.addEventListener(&quot;pointerdown&quot;, (event) =&gt; {
+        summaryPointerHandled =
+          event.pointerType === &quot;mouse&quot; &amp;&amp; event.button === 0 &amp;&amp; !event.ctrlKey;
+        if (!summaryPointerHandled) {
+          return;
+        }
+        event.preventDefault();
+        summary.focus({ preventScroll: true });
+        picker.open = !picker.open;
+        mousePointerId = picker.open ? event.pointerId : null;
+      });
+      summary.addEventListener(&quot;click&quot;, (event) =&gt; {
+        if (summaryPointerHandled &amp;&amp; event.detail &gt; 0) {
+          event.preventDefault();
+        }
+      });
+      const choices = panels.map((panel, index) =&gt; {
+        const choice = document.createElement(&quot;button&quot;);
+        choice.type = &quot;button&quot;;
+        choice.className = &quot;cursor-interaction&quot;;
+        choice.textContent = panel.dataset.variant;
+        choice.addEventListener(&quot;click&quot;, () =&gt; {
+          select(index);
+          summary.focus();
+        });
+        choice.addEventListener(&quot;pointerup&quot;, (event) =&gt; {
+          if (
+            picker.open &amp;&amp;
+            event.pointerType === &quot;mouse&quot; &amp;&amp;
+            event.button === 0 &amp;&amp;
+            event.pointerId === mousePointerId
+          ) {
+            choice.click();
+          }
+        });
+        options.appendChild(choice);
+        return choice;
+      });
+      const select = (index) =&gt; {
+        const changed = active !== index;
+        active = index;
+        panels.forEach((panel, position) =&gt; {
+          panel.hidden = position !== active;
+          choices[position].setAttribute(
+            &quot;aria-current&quot;,
+            String(position === active),
+          );
+        });
+        root.dataset.activeVariant = panels[active].dataset.variant;
+        count.textContent = `${active + 1} / ${panels.length}`;
+        name.textContent = panels[active].dataset.variant;
+        picker.open = false;
+        mousePointerId = null;
+        if (changed) {
+          status.textContent = `${count.textContent}: ${name.textContent}`;
+        }
+      };
+      previous.addEventListener(&quot;click&quot;, () =&gt;
+        select((active + panels.length - 1) % panels.length),
+      );
+      next.addEventListener(&quot;click&quot;, () =&gt;
+        select((active + 1) % panels.length),
+      );
+      picker.addEventListener(&quot;keydown&quot;, (event) =&gt; {
+        if (event.key === &quot;Escape&quot; &amp;&amp; picker.open) {
+          event.preventDefault();
+          picker.open = false;
+          mousePointerId = null;
+          summary.focus();
+          return;
+        }
+        if (event.altKey || event.ctrlKey || event.metaKey) {
+          return;
+        }
+        const index = choices.indexOf(document.activeElement);
+        let nextIndex;
+        if (event.key === &quot;ArrowDown&quot;) {
+          nextIndex = index &lt; 0 ? active : (index + 1) % choices.length;
+        } else if (event.key === &quot;ArrowUp&quot;) {
+          nextIndex = index &lt; 0 ? active : (index + choices.length - 1) % choices.length;
+        } else if (picker.open &amp;&amp; event.key === &quot;Home&quot;) {
+          nextIndex = 0;
+        } else if (picker.open &amp;&amp; event.key === &quot;End&quot;) {
+          nextIndex = choices.length - 1;
+        } else {
+          return;
+        }
+        event.preventDefault();
+        picker.open = true;
+        choices[nextIndex].focus();
+      });
+      picker.addEventListener(&quot;focusout&quot;, (event) =&gt; {
+        if (!picker.contains(event.relatedTarget)) {
+          picker.open = false;
+          mousePointerId = null;
+        }
+      });
+      const dismiss = (event) =&gt; {
+        if (!summary.contains(event.target)) {
+          mousePointerId = null;
+        }
+        if (!picker.contains(event.target)) {
+          picker.open = false;
+        }
+      };
+      const endPointerSelection = () =&gt; {
+        mousePointerId = null;
+      };
+      const sizePicker = () =&gt; {
+        root.style.setProperty(
+          &quot;--viz-carousel-picker-height&quot;,
+          `${picker.open ? options.offsetHeight : 0}px`,
+        );
+      };
+      picker.addEventListener(&quot;toggle&quot;, sizePicker);
+      window.addEventListener(&quot;resize&quot;, sizePicker);
+      document.addEventListener(&quot;pointerdown&quot;, dismiss);
+      document.addEventListener(&quot;pointerup&quot;, endPointerSelection);
+      document.addEventListener(&quot;pointercancel&quot;, endPointerSelection);
+      window.addEventListener(&quot;blur&quot;, endPointerSelection);
+      window.addEventListener(
+        &quot;pagehide&quot;,
+        () =&gt; {
+          document.removeEventListener(&quot;pointerdown&quot;, dismiss);
+          document.removeEventListener(&quot;pointerup&quot;, endPointerSelection);
+          document.removeEventListener(&quot;pointercancel&quot;, endPointerSelection);
+          window.removeEventListener(&quot;blur&quot;, endPointerSelection);
+          window.removeEventListener(&quot;resize&quot;, sizePicker);
+        },
+        { once: true },
+      );
+      root.append(controls, status);
+      select(0);
+    }
+  })();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+
+<script>(() => {
+  const frame = document.getElementById("codex-visualization");
+  if (!(frame instanceof HTMLIFrameElement)) {
+    return;
+  }
+  const isShare = document.documentElement.classList.contains(
+    "visualization-share-root",
+  );
+  let viewportHeight = globalThis.innerHeight;
+  let sizeFingerprint = null;
+  let sizeWriteTimeout;
+  let lastSize = null;
+  let pendingSize = null;
+  const storageKey = `codex:visualization-widget-state-v2:${JSON.stringify([
+    globalThis.location.pathname,
+    globalThis.location.search,
+  ])}`;
+  const sizeStorageKey = `${storageKey}:share-size-v1`;
+  const parseState = (serializedState) => {
+    if (
+      typeof serializedState !== "string" ||
+      new TextEncoder().encode(serializedState).length > 16 * 1024
+    ) {
+      throw new TypeError(
+        "Widget state must be a JSON object of at most 16 KiB",
+      );
+    }
+    /** @type {unknown} */
+    const state = JSON.parse(serializedState);
+    if (
+      state == null ||
+      typeof state !== "object" ||
+      Array.isArray(state) ||
+      ("imageIds" in state &&
+        (!Array.isArray(state.imageIds) || state.imageIds.length > 0))
+    ) {
+      throw new TypeError("Widget state must be a JSON object");
+    }
+    const storedState = { modelContent: null, privateContent: null, ...state };
+    const canonicalState = JSON.stringify(
+      storedState,
+      (_key, /** @type {unknown} */ value) => {
+        if (typeof value === "number" && !Number.isFinite(value)) {
+          throw new TypeError("Widget state must contain finite numbers");
+        }
+        return value;
+      },
+    );
+    if (new TextEncoder().encode(canonicalState).length > 16 * 1024) {
+      throw new TypeError(
+        "Widget state must be a JSON object of at most 16 KiB",
+      );
+    }
+    return storedState;
+  };
+  let storage = null;
+  let state = null;
+  try {
+    const localStorage = globalThis.localStorage;
+    const probeKey = `${storageKey}:probe`;
+    localStorage.setItem(probeKey, "1");
+    localStorage.removeItem(probeKey);
+    storage = localStorage;
+    const savedState = storage.getItem(storageKey);
+    if (savedState != null) {
+      try {
+        state = parseState(savedState);
+      } catch {
+        // Invalid saved state does not disable future writes.
+      }
+    }
+  } catch {
+    storage = null;
+  }
+  const persistSize = () => {
+    globalThis.clearTimeout(sizeWriteTimeout);
+    if (pendingSize == null) {
+      return;
+    }
+    try {
+      storage?.setItem(sizeStorageKey, pendingSize);
+    } catch {
+      // A denied or full cache must not affect the visualization.
+    }
+    pendingSize = null;
+  };
+  if (isShare) {
+    globalThis.addEventListener("pagehide", persistSize);
+  }
+  const initialGlobals = {
+    widgetState: state,
+    statePersistence: storage == null ? "none" : "local",
+  };
+
+  const channel = new MessageChannel();
+  channel.port1.addEventListener("message", (event) => {
+    const data = event.data;
+    if (typeof data !== "object" || data == null) {
+      return;
+    }
+    if (data.type === "widget-state-write") {
+      if (!Number.isSafeInteger(data.id) || data.id <= 0) {
+        return;
+      }
+      let ok = false;
+      try {
+        if (storage != null) {
+          const state = parseState(data.state);
+          storage.setItem(storageKey, JSON.stringify(state));
+          ok = true;
+        }
+      } catch {
+        // Storage denial, quota limits, and invalid state return a failed receipt.
+      }
+      channel.port1.postMessage({
+        type: "widget-state-result",
+        id: data.id,
+        ok,
+      });
+      return;
+    }
+    if (data.type === "height") {
+      const height = data.height;
+      if (
+        typeof height !== "number" ||
+        !Number.isFinite(height) ||
+        height < 0
+      ) {
+        return;
+      }
+      if (height <= 10_000) {
+        const width = isShare && storage != null ? frame.clientWidth : null;
+        frame.style.height = Math.ceil(height) + "px";
+        if (isShare && storage != null) {
+          const size = JSON.stringify({
+            fingerprint: sizeFingerprint,
+            width,
+            viewportHeight: globalThis.innerHeight,
+            dark: globalThis.matchMedia("(prefers-color-scheme: dark)").matches,
+            scale: globalThis.devicePixelRatio,
+            height: Math.ceil(height),
+          });
+          if (size !== lastSize) {
+            lastSize = size;
+            pendingSize = size;
+            globalThis.clearTimeout(sizeWriteTimeout);
+            sizeWriteTimeout = globalThis.setTimeout(persistSize, 100);
+          }
+        }
+      }
+      if (isShare) {
+        // Keep unusually tall content accessible without accepting an unbounded height.
+        if (height > 10_000 && Number.parseFloat(frame.style.height) === 0) {
+          frame.style.removeProperty("height");
+        }
+        frame.scrolling = height > 10_000 ? "auto" : "no";
+        document.documentElement.classList.add("visualization-share-ready");
+      }
+      return;
+    }
+    if (data.type === "scroll-to") {
+      const top = data.top;
+      if (
+        typeof top === "number" &&
+        Number.isFinite(top) &&
+        top >= 0 &&
+        globalThis.navigator.userActivation?.isActive === true
+      ) {
+        globalThis.scrollTo({
+          top: Math.ceil(
+            globalThis.scrollY + frame.getBoundingClientRect().top + top,
+          ),
+        });
+      }
+      return;
+    }
+    if (data.type === "open-external") {
+      const rawHref = data.href;
+      if (typeof rawHref !== "string") {
+        return;
+      }
+      let href;
+      try {
+        const url = new URL(rawHref, document.baseURI);
+        if (url.protocol !== "https:") {
+          return;
+        }
+        href = url.href;
+      } catch {
+        return;
+      }
+      if (globalThis.navigator.userActivation?.isActive === true) {
+        const anchor = document.createElement("a");
+        anchor.href = href;
+        anchor.rel = "noopener noreferrer";
+        anchor.target = "_blank";
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+      }
+      return;
+    }
+    if (data.type === "follow-up") {
+      const prompt = data.prompt;
+      if (
+        typeof prompt !== "string" ||
+        globalThis.navigator.userActivation?.isActive !== true
+      ) {
+        return;
+      }
+      const title = data.title;
+      globalThis.prompt(typeof title === "string" ? title : prompt, prompt);
+    }
+  });
+  channel.port1.start();
+  const srcdoc = frame.dataset.srcdoc;
+  if (srcdoc == null) {
+    return;
+  }
+  globalThis.addEventListener("resize", () => {
+    const height = Number.parseFloat(frame.style.height);
+    if (!isShare && (!Number.isFinite(height) || height <= viewportHeight)) {
+      frame.style.removeProperty("height");
+    }
+    viewportHeight = globalThis.innerHeight;
+    channel.port1.postMessage({ type: "measure" });
+  });
+  frame.addEventListener(
+    "load",
+    () => {
+      frame.contentWindow?.postMessage(
+        { type: "codex-visualization-initialize" },
+        "*",
+        [channel.port2],
+      );
+    },
+    { once: true },
+  );
+  // Match the trusted bootstrap element, not the same text in an authored title.
+  const frameHtml = srcdoc.replace(
+    '<script type="application/json" id="codex-visualization-widget-state">__CODEX_VISUALIZATION_WIDGET_STATE__<\/script>',
+    () =>
+      '<script type="application/json" id="codex-visualization-widget-state">' +
+      JSON.stringify(initialGlobals).replaceAll("<", "\\u003c") +
+      "<\/script>",
+  );
+  if (isShare && storage != null) {
+    // Fingerprint the rendered document, including restored widget state, without
+    // storing its content. This is a layout cache, not a security identity.
+    let hash = 5381;
+    for (let index = 0; index < frameHtml.length; index += 1) {
+      hash = (hash * 33 + frameHtml.charCodeAt(index)) % 4_294_967_296;
+    }
+    sizeFingerprint = hash.toString(36);
+    try {
+      const size = JSON.parse(storage.getItem(sizeStorageKey) ?? "null");
+      if (
+        size?.fingerprint === sizeFingerprint &&
+        size.width === frame.clientWidth &&
+        size.viewportHeight === globalThis.innerHeight &&
+        size.dark ===
+          globalThis.matchMedia("(prefers-color-scheme: dark)").matches &&
+        size.scale === globalThis.devicePixelRatio &&
+        typeof size.height === "number" &&
+        Number.isFinite(size.height) &&
+        size.height >= 0 &&
+        size.height <= 10_000
+      ) {
+        frame.style.height = size.height + "px";
+      }
+    } catch {
+      // Ignore missing or invalid cache entries and measure the live frame.
+    }
+  }
+  frame.srcdoc = frameHtml;
+  delete frame.dataset.srcdoc;
+})();
+</script>
+</body>
+</html>
