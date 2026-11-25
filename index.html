@@ -2395,6 +2395,15 @@ html&gt;body{padding:0}&lt;/style&gt;
   #night-light-auto-options .auto-settings-delete { display: grid; place-items: center; min-height: max(44px, calc(46 * var(--u))); margin: calc(26 * var(--u)) 0 12px; border-radius: 25px; background: white; color: #d72c38; }
   #night-light-auto-options .auto-settings-page .auto-home { margin-top: auto; }
 
+  @container (max-width: 340px) {
+    #night-light-auto-options .auto-devices { margin-bottom: calc(13 * var(--u)); }
+    #night-light-auto-options .auto-boost { min-height: calc(77 * var(--u)); }
+    #night-light-auto-options .auto-levels { margin-bottom: calc(8 * var(--u)); }
+    #night-light-auto-options .auto-settings-section { margin-top: calc(18 * var(--u)); }
+    #night-light-auto-options .auto-settings-section h3 { margin-bottom: calc(11 * var(--u)); }
+    #night-light-auto-options .auto-settings-delete { margin-block: calc(23 * var(--u)) 8px; }
+  }
+
   #night-light-auto-options .auto-overlay { position: absolute; inset: 0; z-index: 1; display: grid; align-items: end; }
   #night-light-auto-options .auto-scrim { position: absolute; inset: 0; background: #2e162660; }
   #night-light-auto-options .auto-sheet { position: relative; padding: 15px 17px 19px; background: #fffafb; border-radius: 24px 24px 0 0; }
