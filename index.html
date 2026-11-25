@@ -1627,20 +1627,6 @@ html:where([data-visualize-live]) &gt; body {
 }
 
 html&gt;body{padding:0}&lt;/style&gt;
-&lt;style&gt;
-/* The icon placeholders stay visible if the carousel icon library is unavailable. */
-.viz-carousel-previous &gt; i[data-lucide],
-.viz-carousel-next &gt; i[data-lucide] {
-  display: block;
-  box-sizing: border-box;
-  width: 8px;
-  height: 8px;
-  border: solid currentColor;
-  border-width: 2px 2px 0 0;
-}
-.viz-carousel-previous &gt; i[data-lucide] { transform: rotate(-135deg); }
-.viz-carousel-next &gt; i[data-lucide] { transform: rotate(45deg); }
-&lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;script type=&quot;application/json&quot; id=&quot;codex-visualization-widget-state&quot;&gt;__CODEX_VISUALIZATION_WIDGET_STATE__&lt;/script&gt;
@@ -2007,13 +1993,7 @@ html&gt;body{padding:0}&lt;/style&gt;
   syncTheme();
 })();
 &lt;/script&gt;
-&lt;div class=&quot;viz-carousel viz-dotted-background&quot; id=&quot;night-light-auto-options&quot; aria-label=&quot;夜灯 Auto 交互方案&quot; data-previous-label=&quot;上一套&quot; data-next-label=&quot;下一套&quot;&gt;
-  &lt;section data-variant=&quot;同行胶囊&quot; aria-label=&quot;同行胶囊方案&quot;&gt;&lt;/section&gt;
-  &lt;section data-variant=&quot;独立设置行&quot; aria-label=&quot;独立设置行方案&quot; hidden&gt;&lt;/section&gt;
-  &lt;section data-variant=&quot;文字说明入口&quot; aria-label=&quot;文字说明入口方案&quot; hidden&gt;&lt;/section&gt;
-&lt;/div&gt;
-
-&lt;template id=&quot;night-light-auto-template&quot;&gt;
+&lt;div class=&quot;viz-dotted-background&quot; id=&quot;night-light-auto-options&quot; aria-label=&quot;夜灯交互原型&quot;&gt;
   &lt;article class=&quot;auto-phone&quot; lang=&quot;en&quot; aria-label=&quot;Pump Control&quot;&gt;
     &lt;div class=&quot;auto-screen&quot;&gt;
       &lt;div class=&quot;auto-status&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;9:41&lt;/span&gt;&lt;span class=&quot;auto-status-icons&quot;&gt;&lt;span class=&quot;auto-signal&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;&lt;i class=&quot;auto-wifi&quot;&gt;&lt;/i&gt;&lt;b&gt;&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;
@@ -2055,14 +2035,6 @@ html&gt;body{padding:0}&lt;/style&gt;
             &lt;span class=&quot;auto-switch-track&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
           &lt;/button&gt;
         &lt;/div&gt;
-        &lt;button type=&quot;button&quot; class=&quot;auto-entry auto-row cursor-interaction&quot; aria-haspopup=&quot;dialog&quot;&gt;
-          &lt;span&gt;Auto Light &lt;span class=&quot;auto-on&quot;&gt;On&lt;/span&gt;&lt;/span&gt;
-          &lt;span class=&quot;auto-row-value&quot;&gt;&lt;span class=&quot;auto-duration&quot;&gt;30 sec&lt;/span&gt;&lt;span class=&quot;auto-chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;/span&gt;
-        &lt;/button&gt;
-        &lt;button type=&quot;button&quot; class=&quot;auto-entry auto-about cursor-interaction&quot; aria-haspopup=&quot;dialog&quot;&gt;
-          &lt;span class=&quot;auto-summary&quot;&gt;Auto · &lt;span class=&quot;auto-duration&quot;&gt;30s&lt;/span&gt;&lt;/span&gt;
-          &lt;span class=&quot;auto-about-link&quot;&gt;&lt;span class=&quot;auto-i&quot; aria-hidden=&quot;true&quot;&gt;i&lt;/span&gt; About Auto&lt;/span&gt;
-        &lt;/button&gt;
         &lt;div class=&quot;auto-brightness&quot; hidden&gt;
           &lt;div class=&quot;auto-brightness-track&quot; aria-hidden=&quot;true&quot;&gt;
             &lt;div class=&quot;auto-brightness-marks&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/div&gt;
@@ -2164,17 +2136,17 @@ html&gt;body{padding:0}&lt;/style&gt;
       &lt;/section&gt;
     &lt;/div&gt;
   &lt;/article&gt;
-&lt;/template&gt;
+&lt;/div&gt;
 
 &lt;style&gt;
-  #night-light-auto-options [data-variant] {
+  #night-light-auto-options {
     box-sizing: border-box;
+    display: grid;
     padding: 12px 0;
     align-content: start;
     justify-items: center;
   }
 
-  #night-light-auto-options [data-variant]:not([hidden]) { display: grid; }
   #night-light-auto-options .auto-phone *, #night-light-auto-options .auto-phone *::before, #night-light-auto-options .auto-phone *::after { box-sizing: border-box; }
   #night-light-auto-options .auto-phone [hidden] { display: none !important; }
 
@@ -2256,11 +2228,8 @@ html&gt;body{padding:0}&lt;/style&gt;
   #night-light-auto-options .auto-light-icon { flex: 0 0 11px; position: relative; height: 13px; margin: -3px 1px 0; border: 1.3px solid; border-radius: 54% 54% 43% 43%; }
   #night-light-auto-options .auto-light-icon::after { content: &quot;&quot;; position: absolute; bottom: -4px; left: 2px; width: 5px; height: 4px; border: 1px solid; border-radius: 0 0 2px 2px; }
   #night-light-auto-options .auto-elapsed { color: var(--app-quiet); font-size: 11px; line-height: 1.15; font-variant-numeric: tabular-nums; }
-  #night-light-auto-options .auto-chip, #night-light-auto-options .auto-row, #night-light-auto-options .auto-about { display: none; }
-  #night-light-auto-options [data-variant=&quot;同行胶囊&quot;] .auto-chip { display: inline-flex; }
-  #night-light-auto-options [data-variant=&quot;独立设置行&quot;] .auto-row, #night-light-auto-options [data-variant=&quot;文字说明入口&quot;] .auto-about { display: flex; }
-
   #night-light-auto-options .auto-chip {
+    display: inline-flex;
     align-items: center;
     gap: 8px;
     min-height: 44px;
@@ -2273,12 +2242,7 @@ html&gt;body{padding:0}&lt;/style&gt;
   }
   #night-light-auto-options .auto-chevron { display: inline-block; width: 5px; height: 5px; margin: 0 2px 0 4px; border: solid currentColor; border-width: 1.4px 1.4px 0 0; transform: rotate(45deg); }
   #night-light-auto-options .auto-chip .auto-chevron { flex: none; width: 7px; height: 7px; margin: 0 2px 0 0; border-width: 2px 2px 0 0; }
-  #night-light-auto-options .auto-row, #night-light-auto-options .auto-about { align-items: center; justify-content: space-between; gap: 8px; width: calc(100% - 28px); min-height: 48px; margin: 0 14px; padding: 0 2px; border: 0; border-top: 1px solid var(--app-rule); background: transparent; text-align: left; white-space: nowrap; }
-  #night-light-auto-options .auto-row-value { display: inline-flex; align-items: center; gap: 4px; color: var(--app-accent); font-size: 13px; font-weight: 650; }
-  #night-light-auto-options .auto-on, #night-light-auto-options .auto-summary { margin-left: 4px; padding: 3px 7px; border-radius: 12px; background: var(--app-pale); color: var(--app-accent); font-size: 11px; font-weight: 650; }
-  #night-light-auto-options .auto-summary { margin-left: 0; font-size: 12px; }
-  #night-light-auto-options .auto-about-link { display: inline-flex; align-items: center; gap: 5px; color: var(--app-accent); font-size: 12px; text-decoration: underline; text-underline-offset: 2px; }
-  #night-light-auto-options .auto-i { display: grid; place-items: center; width: 14px; height: 14px; border-radius: 50%; border: 1px solid; font: 650 10px/1 -apple-system, BlinkMacSystemFont, sans-serif; }
+  #night-light-auto-options .auto-summary { padding: 3px 7px; border-radius: 12px; background: var(--app-pale); color: var(--app-accent); font-size: 12px; font-weight: 650; }
 
   #night-light-auto-options .auto-switch-button { flex: 0 0 44px; height: 44px; display: grid; place-items: center; padding: 0; border: 0; border-radius: 22px; background: transparent; }
   #night-light-auto-options .auto-switch-track { position: relative; width: 38px; height: 22px; border-radius: 12px; background: #eeebed; transition: background-color 160ms ease; }
@@ -2426,8 +2390,6 @@ html&gt;body{padding:0}&lt;/style&gt;
 &lt;script&gt;
 (() =&gt; {
   const root = document.getElementById(&quot;night-light-auto-options&quot;);
-  const template = document.getElementById(&quot;night-light-auto-template&quot;);
-  const views = Array.from(root.querySelectorAll(&quot;[data-variant]&quot;));
   const setting = { enabled: true, duration: 30 };
 
   function formatDuration(duration, minuteUnit, secondUnit) {
@@ -2438,195 +2400,183 @@ html&gt;body{padding:0}&lt;/style&gt;
     return [minuteText, secondText].filter(Boolean).join(&quot; &quot;);
   }
 
-  views.forEach((view) =&gt; view.append(template.content.cloneNode(true)));
-
   function renderSetting() {
-    root.querySelectorAll(&quot;.auto-entry&quot;).forEach((entry) =&gt; { entry.hidden = !setting.enabled; });
-    root.querySelectorAll(&quot;.auto-policy-switch&quot;).forEach((button) =&gt; {
-      button.setAttribute(&quot;aria-checked&quot;, String(setting.enabled));
+    autoEntry.hidden = !setting.enabled;
+    policySwitch.setAttribute(&quot;aria-checked&quot;, String(setting.enabled));
+    durationFieldset.disabled = !setting.enabled;
+    durationFieldset.hidden = !setting.enabled;
+
+    const preset = durationFieldset.querySelector(`[data-duration=&quot;${setting.duration}&quot;]`);
+    const selected = preset ?? durationFieldset.querySelector(&#x27;[data-duration=&quot;custom&quot;]&#x27;);
+    durationChoices.forEach((button) =&gt; {
+      button.setAttribute(&quot;aria-pressed&quot;, String(button === selected));
     });
-    root.querySelectorAll(&quot;.auto-settings-duration&quot;).forEach((fieldset) =&gt; {
-      fieldset.disabled = !setting.enabled;
-      fieldset.hidden = !setting.enabled;
-      const preset = fieldset.querySelector(`[data-duration=&quot;${setting.duration}&quot;]`);
-      const selected = preset ?? fieldset.querySelector(&#x27;[data-duration=&quot;custom&quot;]&#x27;);
-      fieldset.querySelectorAll(&quot;[data-duration]&quot;).forEach((button) =&gt; {
-        button.setAttribute(&quot;aria-pressed&quot;, String(button === selected));
-      });
-    });
-    root.querySelectorAll(&quot;.auto-duration&quot;).forEach((label) =&gt; {
-      if (label.closest(&quot;.auto-info&quot;)) {
-        label.textContent = formatDuration(setting.duration, &quot; 分钟&quot;, &quot; 秒&quot;);
-      } else if (label.closest(&quot;.auto-summary&quot;)) {
-        label.textContent = formatDuration(setting.duration, &quot;m&quot;, &quot;s&quot;);
-      } else {
-        label.textContent = formatDuration(setting.duration, &quot; min&quot;, &quot; sec&quot;);
-      }
-    });
+    controlDuration.textContent = formatDuration(setting.duration, &quot;m&quot;, &quot;s&quot;);
+    infoDuration.textContent = formatDuration(setting.duration, &quot; 分钟&quot;, &quot; 秒&quot;);
   }
 
-  views.forEach((view) =&gt; {
-    const screen = view.querySelector(&quot;.auto-screen&quot;);
-    const controlScroll = view.querySelector(&quot;.auto-control-scroll&quot;);
-    const settingsPage = view.querySelector(&quot;.auto-settings-page&quot;);
-    const back = view.querySelector(&quot;.auto-settings-back&quot;);
-    const settingsPumps = view.querySelector(&quot;.auto-settings-pumps&quot;);
-    const policySwitch = view.querySelector(&quot;.auto-policy-switch&quot;);
-    const durationChoices = view.querySelectorAll(&quot;[data-duration]&quot;);
-    const overlay = view.querySelector(&quot;.auto-overlay&quot;);
-    const info = view.querySelector(&quot;.auto-info&quot;);
-    const customDuration = view.querySelector(&quot;.auto-settings&quot;);
-    const gear = view.querySelector(&quot;.auto-gear&quot;);
-    const form = customDuration.querySelector(&quot;form&quot;);
-    const { minutes, seconds } = form.elements;
-    const fields = form.querySelector(&quot;fieldset&quot;);
-    const error = form.querySelector(&quot;.auto-error&quot;);
-    const lightSwitch = view.querySelector(&quot;.auto-light-switch&quot;);
-    const elapsed = view.querySelector(&quot;.auto-elapsed&quot;);
-    const brightness = view.querySelector(&quot;.auto-brightness&quot;);
-    const brightnessInput = view.querySelector(&quot;.auto-brightness-input&quot;);
-    const brightnessValue = view.querySelector(&quot;.auto-brightness-value&quot;);
-    const marks = view.querySelectorAll(&quot;.auto-brightness-marks i&quot;);
-    let activeDialog;
-    let opener;
-    let settingsOpener;
-    let interval;
+  const screen = root.querySelector(&quot;.auto-screen&quot;);
+  const controlScroll = root.querySelector(&quot;.auto-control-scroll&quot;);
+  const settingsPage = root.querySelector(&quot;.auto-settings-page&quot;);
+  const back = root.querySelector(&quot;.auto-settings-back&quot;);
+  const settingsPumps = root.querySelector(&quot;.auto-settings-pumps&quot;);
+  const autoEntry = root.querySelector(&quot;.auto-entry&quot;);
+  const controlDuration = autoEntry.querySelector(&quot;.auto-duration&quot;);
+  const policySwitch = root.querySelector(&quot;.auto-policy-switch&quot;);
+  const durationFieldset = root.querySelector(&quot;.auto-settings-duration&quot;);
+  const durationChoices = durationFieldset.querySelectorAll(&quot;[data-duration]&quot;);
+  const overlay = root.querySelector(&quot;.auto-overlay&quot;);
+  const info = root.querySelector(&quot;.auto-info&quot;);
+  const infoDuration = info.querySelector(&quot;.auto-duration&quot;);
+  const customDuration = root.querySelector(&quot;.auto-settings&quot;);
+  const gear = root.querySelector(&quot;.auto-gear&quot;);
+  const form = customDuration.querySelector(&quot;form&quot;);
+  const { minutes, seconds } = form.elements;
+  const fields = form.querySelector(&quot;fieldset&quot;);
+  const error = form.querySelector(&quot;.auto-error&quot;);
+  const lightSwitch = root.querySelector(&quot;.auto-light-switch&quot;);
+  const elapsed = root.querySelector(&quot;.auto-elapsed&quot;);
+  const brightness = root.querySelector(&quot;.auto-brightness&quot;);
+  const brightnessInput = root.querySelector(&quot;.auto-brightness-input&quot;);
+  const brightnessValue = root.querySelector(&quot;.auto-brightness-value&quot;);
+  const marks = root.querySelectorAll(&quot;.auto-brightness-marks i&quot;);
+  let activeDialog;
+  let opener;
+  let settingsOpener;
+  let interval;
 
-    view.querySelectorAll(&quot;.auto-devices img&quot;).forEach((img) =&gt; settingsPumps.append(img.cloneNode()));
+  root.querySelectorAll(&quot;.auto-devices img&quot;).forEach((img) =&gt; settingsPumps.append(img.cloneNode()));
 
-    function openDialog(panel, trigger) {
-      opener = trigger;
-      overlay.hidden = false;
-      screen.inert = true;
-      settingsPage.inert = true;
-      info.hidden = panel !== info;
-      customDuration.hidden = panel !== customDuration;
-      activeDialog = panel;
-      panel.querySelector(&quot;.auto-close&quot;).focus();
-    }
+  function openDialog(panel, trigger) {
+    opener = trigger;
+    overlay.hidden = false;
+    screen.inert = true;
+    settingsPage.inert = true;
+    info.hidden = panel !== info;
+    customDuration.hidden = panel !== customDuration;
+    activeDialog = panel;
+    panel.querySelector(&quot;.auto-close&quot;).focus();
+  }
 
-    function closeDialog() {
-      if (!activeDialog) return;
-      activeDialog.hidden = true;
-      activeDialog = undefined;
-      overlay.hidden = true;
-      screen.inert = false;
-      settingsPage.inert = false;
-      opener.focus({ preventScroll: true });
-    }
+  function closeDialog() {
+    if (!activeDialog) return;
+    activeDialog.hidden = true;
+    activeDialog = undefined;
+    overlay.hidden = true;
+    screen.inert = false;
+    settingsPage.inert = false;
+    opener.focus({ preventScroll: true });
+  }
 
-    function openSettingsPage(trigger) {
-      closeDialog();
-      settingsOpener = trigger;
-      screen.hidden = true;
-      settingsPage.hidden = false;
-      back.focus();
-    }
+  function openSettingsPage(trigger) {
+    closeDialog();
+    settingsOpener = trigger;
+    screen.hidden = true;
+    settingsPage.hidden = false;
+    back.focus();
+  }
 
-    view.querySelectorAll(&quot;.auto-entry&quot;).forEach((entry) =&gt; {
-      entry.addEventListener(&quot;click&quot;, () =&gt; openDialog(info, entry));
-    });
+  autoEntry.addEventListener(&quot;click&quot;, () =&gt; openDialog(info, autoEntry));
 
-    gear.addEventListener(&quot;click&quot;, () =&gt; openSettingsPage(gear));
-    view.querySelector(&quot;.auto-configure&quot;).addEventListener(&quot;click&quot;, () =&gt; openSettingsPage(opener));
-    back.addEventListener(&quot;click&quot;, () =&gt; {
-      settingsPage.hidden = true;
-      screen.hidden = false;
-      (settingsOpener.hidden ? gear : settingsOpener).focus();
-    });
+  gear.addEventListener(&quot;click&quot;, () =&gt; openSettingsPage(gear));
+  root.querySelector(&quot;.auto-configure&quot;).addEventListener(&quot;click&quot;, () =&gt; openSettingsPage(opener));
+  back.addEventListener(&quot;click&quot;, () =&gt; {
+    settingsPage.hidden = true;
+    screen.hidden = false;
+    (settingsOpener.hidden ? gear : settingsOpener).focus();
+  });
 
-    policySwitch.addEventListener(&quot;click&quot;, () =&gt; {
-      setting.enabled = !setting.enabled;
-      renderSetting();
-    });
+  policySwitch.addEventListener(&quot;click&quot;, () =&gt; {
+    setting.enabled = !setting.enabled;
+    renderSetting();
+  });
 
-    durationChoices.forEach((button) =&gt; {
-      button.addEventListener(&quot;click&quot;, () =&gt; {
-        if (button.dataset.duration === &quot;custom&quot;) {
-          minutes.value = Math.floor(setting.duration / 60);
-          seconds.value = setting.duration % 60;
-          error.hidden = true;
-          openDialog(customDuration, button);
-          return;
-        }
-
-        setting.duration = Number(button.dataset.duration);
-        renderSetting();
-      });
-    });
-
-    view.querySelectorAll(&quot;.auto-close, .auto-scrim&quot;).forEach((element) =&gt; element.addEventListener(&quot;click&quot;, closeDialog));
-    overlay.addEventListener(&quot;keydown&quot;, (event) =&gt; {
-      if (event.key === &quot;Escape&quot;) {
-        event.stopPropagation();
-        closeDialog();
-      }
-
-      if (event.key === &quot;Tab&quot;) {
-        const focusable = activeDialog.querySelectorAll(&quot;button, input:not(:disabled)&quot;);
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        if (event.shiftKey &amp;&amp; document.activeElement === first) {
-          event.preventDefault();
-          last.focus();
-        } else if (!event.shiftKey &amp;&amp; document.activeElement === last) {
-          event.preventDefault();
-          first.focus();
-        }
-      }
-    });
-
-    fields.addEventListener(&quot;input&quot;, () =&gt; { error.hidden = true; });
-    function saveSettings() {
-      const duration = minutes.valueAsNumber * 60 + seconds.valueAsNumber;
-      if (!minutes.validity.valid || !seconds.validity.valid || duration &lt; 10 || duration &gt; 900) {
-        error.hidden = false;
-        minutes.focus();
+  durationChoices.forEach((button) =&gt; {
+    button.addEventListener(&quot;click&quot;, () =&gt; {
+      if (button.dataset.duration === &quot;custom&quot;) {
+        minutes.value = Math.floor(setting.duration / 60);
+        seconds.value = setting.duration % 60;
+        error.hidden = true;
+        openDialog(customDuration, button);
         return;
       }
 
-      setting.duration = duration;
+      setting.duration = Number(button.dataset.duration);
       renderSetting();
+    });
+  });
+
+  root.querySelectorAll(&quot;.auto-close, .auto-scrim&quot;).forEach((element) =&gt; element.addEventListener(&quot;click&quot;, closeDialog));
+  overlay.addEventListener(&quot;keydown&quot;, (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      event.stopPropagation();
       closeDialog();
     }
 
-    form.querySelector(&quot;.auto-save&quot;).addEventListener(&quot;click&quot;, saveSettings);
-    form.addEventListener(&quot;keydown&quot;, (event) =&gt; {
-      if (event.key === &quot;Enter&quot; &amp;&amp; event.target.matches(&#x27;input[type=&quot;number&quot;]&#x27;)) {
+    if (event.key === &quot;Tab&quot;) {
+      const focusable = activeDialog.querySelectorAll(&quot;button, input:not(:disabled)&quot;);
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey &amp;&amp; document.activeElement === first) {
         event.preventDefault();
-        saveSettings();
+        last.focus();
+      } else if (!event.shiftKey &amp;&amp; document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
-    });
+    }
+  });
 
-    function renderBrightness() {
-      const value = brightnessInput.valueAsNumber;
-      brightness.style.setProperty(&quot;--brightness&quot;, value / 100);
-      brightnessValue.textContent = `${value}%`;
-      brightnessInput.setAttribute(&quot;aria-valuetext&quot;, `${value} percent`);
-      marks.forEach((mark, index) =&gt; mark.classList.toggle(&quot;is-filled&quot;, value &gt;= index * 25));
+  fields.addEventListener(&quot;input&quot;, () =&gt; { error.hidden = true; });
+  function saveSettings() {
+    const duration = minutes.valueAsNumber * 60 + seconds.valueAsNumber;
+    if (!minutes.validity.valid || !seconds.validity.valid || duration &lt; 10 || duration &gt; 900) {
+      error.hidden = false;
+      minutes.focus();
+      return;
     }
 
-    brightnessInput.addEventListener(&quot;input&quot;, renderBrightness);
-    renderBrightness();
+    setting.duration = duration;
+    renderSetting();
+    closeDialog();
+  }
 
-    lightSwitch.addEventListener(&quot;click&quot;, () =&gt; {
-      const on = lightSwitch.getAttribute(&quot;aria-checked&quot;) === &quot;false&quot;;
-      lightSwitch.setAttribute(&quot;aria-checked&quot;, String(on));
-      elapsed.hidden = !on;
-      brightness.hidden = !on;
-      window.clearInterval(interval);
-      if (on) {
-        const overflow = brightness.getBoundingClientRect().bottom - controlScroll.getBoundingClientRect().bottom + 4;
-        controlScroll.scrollTop += Math.max(0, Math.ceil(overflow));
-        const start = performance.now();
-        const update = () =&gt; {
-          const total = Math.floor((performance.now() - start) / 1000);
-          elapsed.textContent = [Math.floor(total / 60), total % 60].map((value) =&gt; String(value).padStart(2, &quot;0&quot;)).join(&quot;:&quot;);
-        };
-        update();
-        interval = window.setInterval(update, 200);
-      }
-    });
+  form.querySelector(&quot;.auto-save&quot;).addEventListener(&quot;click&quot;, saveSettings);
+  form.addEventListener(&quot;keydown&quot;, (event) =&gt; {
+    if (event.key === &quot;Enter&quot; &amp;&amp; event.target.matches(&#x27;input[type=&quot;number&quot;]&#x27;)) {
+      event.preventDefault();
+      saveSettings();
+    }
+  });
+
+  function renderBrightness() {
+    const value = brightnessInput.valueAsNumber;
+    brightness.style.setProperty(&quot;--brightness&quot;, value / 100);
+    brightnessValue.textContent = `${value}%`;
+    brightnessInput.setAttribute(&quot;aria-valuetext&quot;, `${value} percent`);
+    marks.forEach((mark, index) =&gt; mark.classList.toggle(&quot;is-filled&quot;, value &gt;= index * 25));
+  }
+
+  brightnessInput.addEventListener(&quot;input&quot;, renderBrightness);
+  renderBrightness();
+
+  lightSwitch.addEventListener(&quot;click&quot;, () =&gt; {
+    const on = lightSwitch.getAttribute(&quot;aria-checked&quot;) === &quot;false&quot;;
+    lightSwitch.setAttribute(&quot;aria-checked&quot;, String(on));
+    elapsed.hidden = !on;
+    brightness.hidden = !on;
+    window.clearInterval(interval);
+    if (on) {
+      const overflow = brightness.getBoundingClientRect().bottom - controlScroll.getBoundingClientRect().bottom + 4;
+      controlScroll.scrollTop += Math.max(0, Math.ceil(overflow));
+      const start = performance.now();
+      const update = () =&gt; {
+        const total = Math.floor((performance.now() - start) / 1000);
+        elapsed.textContent = [Math.floor(total / 60), total % 60].map((value) =&gt; String(value).padStart(2, &quot;0&quot;)).join(&quot;:&quot;);
+      };
+      update();
+      interval = window.setInterval(update, 200);
+    }
   });
 
   renderSetting();
