@@ -2028,7 +2028,7 @@ html&gt;body{padding:0}&lt;/style&gt;
             &lt;/div&gt;
           &lt;/div&gt;
           &lt;button type=&quot;button&quot; class=&quot;auto-entry auto-chip cursor-interaction&quot; aria-haspopup=&quot;dialog&quot;&gt;
-            &lt;span class=&quot;auto-summary&quot;&gt;Auto · &lt;span class=&quot;auto-duration&quot;&gt;30s&lt;/span&gt;&lt;/span&gt;
+            &lt;span class=&quot;auto-summary&quot;&gt;Auto · &lt;span class=&quot;auto-duration&quot;&gt;20s&lt;/span&gt;&lt;/span&gt;
             &lt;span class=&quot;auto-chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
           &lt;/button&gt;
           &lt;button class=&quot;auto-light-switch auto-switch-button cursor-interaction&quot; type=&quot;button&quot; role=&quot;switch&quot; aria-label=&quot;Light&quot; aria-checked=&quot;false&quot;&gt;
@@ -2051,11 +2051,11 @@ html&gt;body{padding:0}&lt;/style&gt;
       &lt;div class=&quot;auto-home&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
     &lt;/div&gt;
 
-    &lt;section class=&quot;auto-settings-page&quot; aria-label=&quot;Setting&quot; hidden&gt;
+    &lt;section class=&quot;auto-settings-page&quot; lang=&quot;zh-CN&quot; aria-label=&quot;设备管理&quot; hidden&gt;
       &lt;div class=&quot;auto-status&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;7:41&lt;/span&gt;&lt;span class=&quot;auto-status-icons&quot;&gt;&lt;span class=&quot;auto-signal&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;&lt;i class=&quot;auto-wifi&quot;&gt;&lt;/i&gt;&lt;b&gt;&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;
       &lt;header class=&quot;auto-header auto-settings-header&quot;&gt;
-        &lt;button class=&quot;auto-nav auto-settings-back cursor-interaction&quot; type=&quot;button&quot; aria-label=&quot;Back to Pump Control&quot;&gt;&lt;span class=&quot;auto-chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;/button&gt;
-        &lt;h2&gt;Setting&lt;/h2&gt;
+        &lt;button class=&quot;auto-nav auto-settings-back cursor-interaction&quot; type=&quot;button&quot; aria-label=&quot;返回控制页&quot;&gt;&lt;span class=&quot;auto-chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;/button&gt;
+        &lt;h2&gt;设备管理&lt;/h2&gt;
       &lt;/header&gt;
 
       &lt;div class=&quot;auto-settings-device auto-settings-card&quot;&gt;
@@ -2067,40 +2067,41 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;span class=&quot;auto-chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
       &lt;/div&gt;
 
-      &lt;section class=&quot;auto-settings-section&quot; aria-label=&quot;Behavior Detection&quot;&gt;
-        &lt;h3&gt;Behavior Detection&lt;/h3&gt;
+      &lt;section class=&quot;auto-settings-section&quot; aria-label=&quot;设备功能&quot;&gt;
+        &lt;h3&gt;设备功能&lt;/h3&gt;
         &lt;div class=&quot;auto-behavior-card auto-settings-card&quot;&gt;
           &lt;div class=&quot;auto-policy-row&quot;&gt;
             &lt;div&gt;
-              &lt;strong&gt;Light Auto-on&lt;/strong&gt;
-              &lt;p&gt;Automatically turn on the right light when pumping pauses.&lt;/p&gt;
+              &lt;strong&gt;夜灯自动开启&lt;/strong&gt;
+              &lt;strong&gt;夜灯自动开启&lt;/strong&gt;
+              &lt;p&gt;暂停吸奶时，夜灯将自动开启。&lt;/p&gt;
             &lt;/div&gt;
-            &lt;button class=&quot;auto-policy-switch auto-switch-button cursor-interaction&quot; type=&quot;button&quot; role=&quot;switch&quot; aria-label=&quot;Light Auto-on&quot; aria-checked=&quot;true&quot;&gt;
+            &lt;button class=&quot;auto-policy-switch auto-switch-button cursor-interaction&quot; type=&quot;button&quot; role=&quot;switch&quot; aria-label=&quot;夜灯自动开启&quot; aria-checked=&quot;true&quot;&gt;
               &lt;span class=&quot;auto-switch-track&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
             &lt;/button&gt;
           &lt;/div&gt;
           &lt;fieldset class=&quot;auto-settings-duration&quot;&gt;
-            &lt;legend&gt;Duration&lt;/legend&gt;
+            &lt;legend&gt;时长&lt;/legend&gt;
             &lt;div class=&quot;auto-preset-options&quot;&gt;
-              &lt;button class=&quot;cursor-interaction&quot; type=&quot;button&quot; data-duration=&quot;300&quot; aria-pressed=&quot;false&quot;&gt;5 min&lt;/button&gt;
-              &lt;button class=&quot;cursor-interaction&quot; type=&quot;button&quot; data-duration=&quot;600&quot; aria-pressed=&quot;false&quot;&gt;10 min&lt;/button&gt;
-              &lt;button class=&quot;cursor-interaction&quot; type=&quot;button&quot; data-duration=&quot;900&quot; aria-pressed=&quot;false&quot;&gt;15 min&lt;/button&gt;
-              &lt;button class=&quot;cursor-interaction&quot; type=&quot;button&quot; data-duration=&quot;custom&quot; aria-pressed=&quot;true&quot; aria-haspopup=&quot;dialog&quot;&gt;Custom&lt;/button&gt;
+              &lt;button class=&quot;cursor-interaction&quot; type=&quot;button&quot; data-duration=&quot;10&quot; aria-pressed=&quot;false&quot;&gt;10 秒&lt;/button&gt;
+              &lt;button class=&quot;cursor-interaction&quot; type=&quot;button&quot; data-duration=&quot;20&quot; aria-pressed=&quot;true&quot;&gt;20 秒&lt;/button&gt;
+              &lt;button class=&quot;cursor-interaction&quot; type=&quot;button&quot; data-duration=&quot;30&quot; aria-pressed=&quot;false&quot;&gt;30 秒&lt;/button&gt;
+              &lt;button class=&quot;cursor-interaction&quot; type=&quot;button&quot; data-duration=&quot;custom&quot; aria-pressed=&quot;false&quot; aria-haspopup=&quot;dialog&quot;&gt;自定义&lt;/button&gt;
             &lt;/div&gt;
           &lt;/fieldset&gt;
         &lt;/div&gt;
       &lt;/section&gt;
 
-      &lt;section class=&quot;auto-settings-section&quot; aria-label=&quot;General Settings&quot;&gt;
-        &lt;h3&gt;General Settings&lt;/h3&gt;
+      &lt;section class=&quot;auto-settings-section&quot; aria-label=&quot;通用设置&quot;&gt;
+        &lt;h3&gt;通用设置&lt;/h3&gt;
         &lt;ul class=&quot;auto-general-list auto-settings-card&quot;&gt;
-          &lt;li&gt;&lt;span&gt;Firmware Upgrade&lt;/span&gt;&lt;span class=&quot;auto-firmware&quot;&gt;New &lt;i aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;span class=&quot;auto-chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;span&gt;Restore Factory&lt;/span&gt;&lt;span class=&quot;auto-chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;span&gt;Power Off Device&lt;/span&gt;&lt;span class=&quot;auto-chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;span&gt;固件更新&lt;/span&gt;&lt;span class=&quot;auto-firmware&quot;&gt;有新版本 &lt;i aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;span class=&quot;auto-chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;span&gt;恢复出厂设置&lt;/span&gt;&lt;span class=&quot;auto-chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;span&gt;关闭设备&lt;/span&gt;&lt;span class=&quot;auto-chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/section&gt;
 
-      &lt;div class=&quot;auto-settings-delete&quot;&gt;Delete&lt;/div&gt;
+      &lt;div class=&quot;auto-settings-delete&quot;&gt;删除&lt;/div&gt;
       &lt;div class=&quot;auto-home&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
     &lt;/section&gt;
 
@@ -2112,26 +2113,26 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;button type=&quot;button&quot; class=&quot;auto-close cursor-interaction&quot; aria-label=&quot;关闭说明&quot;&gt;×&lt;/button&gt;
         &lt;/header&gt;
         &lt;p&gt;暂停吸奶时，夜灯会自动亮起，并在设定时长结束后熄灭。&lt;/p&gt;
-        &lt;div class=&quot;auto-current&quot;&gt;&lt;span&gt;设定时长&lt;/span&gt;&lt;strong class=&quot;auto-duration&quot;&gt;30 秒&lt;/strong&gt;&lt;/div&gt;
+        &lt;div class=&quot;auto-current&quot;&gt;&lt;span&gt;设定时长&lt;/span&gt;&lt;strong class=&quot;auto-duration&quot;&gt;20 秒&lt;/strong&gt;&lt;/div&gt;
         &lt;button type=&quot;button&quot; class=&quot;auto-configure auto-primary cursor-interaction&quot;&gt;前往设置&lt;/button&gt;
       &lt;/section&gt;
 
-      &lt;section class=&quot;auto-settings auto-sheet&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-label=&quot;Custom Duration&quot; hidden&gt;
+      &lt;section class=&quot;auto-settings auto-sheet&quot; lang=&quot;zh-CN&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-label=&quot;自定义时长&quot; hidden&gt;
         &lt;header class=&quot;auto-sheet-header&quot;&gt;
-          &lt;h3&gt;Custom Duration&lt;/h3&gt;
-          &lt;button type=&quot;button&quot; class=&quot;auto-close cursor-interaction&quot; aria-label=&quot;Close custom duration&quot;&gt;×&lt;/button&gt;
+          &lt;h3&gt;自定义时长&lt;/h3&gt;
+          &lt;button type=&quot;button&quot; class=&quot;auto-close cursor-interaction&quot; aria-label=&quot;关闭自定义时长&quot;&gt;×&lt;/button&gt;
         &lt;/header&gt;
         &lt;form novalidate&gt;
           &lt;fieldset class=&quot;auto-duration-fields&quot;&gt;
-            &lt;legend&gt;Auto-off after&lt;/legend&gt;
+            &lt;legend&gt;自动亮灯时长&lt;/legend&gt;
             &lt;div class=&quot;auto-inputs&quot;&gt;
-              &lt;label&gt;&lt;input name=&quot;minutes&quot; type=&quot;number&quot; inputmode=&quot;numeric&quot; min=&quot;0&quot; max=&quot;15&quot; step=&quot;1&quot; required&gt;&lt;span&gt;min&lt;/span&gt;&lt;/label&gt;
-              &lt;label&gt;&lt;input name=&quot;seconds&quot; type=&quot;number&quot; inputmode=&quot;numeric&quot; min=&quot;0&quot; max=&quot;59&quot; step=&quot;1&quot; required&gt;&lt;span&gt;sec&lt;/span&gt;&lt;/label&gt;
+              &lt;label&gt;&lt;input name=&quot;minutes&quot; type=&quot;number&quot; inputmode=&quot;numeric&quot; min=&quot;0&quot; max=&quot;15&quot; step=&quot;1&quot; required&gt;&lt;span&gt;分钟&lt;/span&gt;&lt;/label&gt;
+              &lt;label&gt;&lt;input name=&quot;seconds&quot; type=&quot;number&quot; inputmode=&quot;numeric&quot; min=&quot;0&quot; max=&quot;59&quot; step=&quot;1&quot; required&gt;&lt;span&gt;秒&lt;/span&gt;&lt;/label&gt;
             &lt;/div&gt;
-            &lt;p class=&quot;auto-range&quot;&gt;10 sec to 15 min&lt;/p&gt;
-            &lt;p class=&quot;auto-error&quot; role=&quot;alert&quot; hidden&gt;Enter a duration between 10 sec and 15 min.&lt;/p&gt;
+            &lt;p class=&quot;auto-range&quot;&gt;10 秒至 15 分钟&lt;/p&gt;
+            &lt;p class=&quot;auto-error&quot; role=&quot;alert&quot; hidden&gt;请输入 10 秒至 15 分钟之间的时长。&lt;/p&gt;
           &lt;/fieldset&gt;
-          &lt;button type=&quot;button&quot; class=&quot;auto-save auto-primary cursor-interaction&quot;&gt;Save&lt;/button&gt;
+          &lt;button type=&quot;button&quot; class=&quot;auto-save auto-primary cursor-interaction&quot;&gt;保存&lt;/button&gt;
         &lt;/form&gt;
       &lt;/section&gt;
     &lt;/div&gt;
@@ -2306,19 +2307,19 @@ html&gt;body{padding:0}&lt;/style&gt;
   }
   #night-light-auto-options .auto-settings-page &gt; :not(.auto-home) { flex-shrink: 0; }
 
-  #night-light-auto-options .auto-settings-header { display: grid; grid-template-columns: 44px 1fr 44px; margin: calc(19 * var(--u)) 0 calc(19 * var(--u)); text-align: center; }
-  #night-light-auto-options .auto-settings-header h2 { font-size: 15px; }
+  #night-light-auto-options .auto-settings-header { display: grid; grid-template-columns: 44px 1fr 44px; margin: calc(16 * var(--u)) 0 calc(15 * var(--u)); text-align: center; }
+  #night-light-auto-options .auto-settings-header h2 { font-size: 16px; }
   #night-light-auto-options .auto-settings-back { width: 44px; height: 44px; background: linear-gradient(#efedec, #fff); }
   #night-light-auto-options .auto-settings-back .auto-chevron { width: 8px; height: 8px; margin: 0; transform: rotate(-135deg); }
 
-  #night-light-auto-options .auto-settings-card { border-radius: 19px; background: white; }
+  #night-light-auto-options .auto-settings-card { border-radius: 15px; background: white; }
   #night-light-auto-options .auto-settings-device {
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 13px;
-    min-height: calc(72 * var(--u));
-    padding: 11px 16px;
+    min-height: calc(61 * var(--u));
+    padding: 9px 16px;
   }
   #night-light-auto-options .auto-settings-pumps { display: flex; gap: 2px; }
   #night-light-auto-options .auto-settings-pumps img { display: block; width: 33px; height: auto; }
@@ -2328,15 +2329,15 @@ html&gt;body{padding:0}&lt;/style&gt;
   #night-light-auto-options .auto-settings-battery b { padding: 1px 3px; border-radius: 4px; background: var(--app-text); color: white; font-size: 9px; }
   #night-light-auto-options .auto-settings-device .auto-chevron, #night-light-auto-options .auto-general-list .auto-chevron { width: 7px; height: 7px; color: #958892; }
 
-  #night-light-auto-options .auto-settings-section { margin-top: calc(22 * var(--u)); }
-  #night-light-auto-options .auto-settings-section h3 { margin: 0 0 calc(15 * var(--u)) 7px; color: var(--app-quiet); font-size: 12px; font-weight: 500; }
-  #night-light-auto-options .auto-behavior-card { min-height: calc(79 * var(--u)); padding: calc(15 * var(--u)) 14px; }
+  #night-light-auto-options .auto-settings-section { margin-top: calc(19 * var(--u)); }
+  #night-light-auto-options .auto-settings-section h3 { margin: 0 0 calc(10 * var(--u)) 7px; color: var(--app-quiet); font-size: 12px; font-weight: 500; }
+  #night-light-auto-options .auto-behavior-card { min-height: calc(79 * var(--u)); padding: calc(13 * var(--u)) 14px; }
   #night-light-auto-options .auto-policy-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
   #night-light-auto-options .auto-policy-row strong, #night-light-auto-options .auto-settings-duration legend { font-size: 13px; font-weight: 650; }
   #night-light-auto-options .auto-policy-row p { margin: 3px 0 0; color: var(--app-quiet); font-size: 11px; line-height: 1.35; }
-  #night-light-auto-options .auto-settings-duration { min-width: 0; margin: 13px 0 0; padding: 0; border: 0; }
+  #night-light-auto-options .auto-settings-duration { min-width: 0; margin: 11px 0 0; padding: 0; border: 0; }
   #night-light-auto-options .auto-settings-duration legend { padding: 0; }
-  #night-light-auto-options .auto-preset-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; margin-top: 11px; }
+  #night-light-auto-options .auto-preset-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; max-width: calc(275 * var(--u)); margin-top: 10px; }
   #night-light-auto-options .auto-preset-options button {
     min-height: 44px;
     padding: 5px;
@@ -2344,7 +2345,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     border-radius: 25px;
     background: #f8f5f6;
     color: #58434e;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 560;
     white-space: nowrap;
   }
@@ -2356,7 +2357,7 @@ html&gt;body{padding:0}&lt;/style&gt;
   #night-light-auto-options .auto-general-list li &gt; :first-child { margin-right: auto; }
   #night-light-auto-options .auto-firmware { display: flex; align-items: center; gap: 6px; color: var(--app-quiet); }
   #night-light-auto-options .auto-firmware i { width: 7px; height: 7px; border-radius: 50%; background: #f14b52; }
-  #night-light-auto-options .auto-settings-delete { display: grid; place-items: center; min-height: max(44px, calc(46 * var(--u))); margin: calc(26 * var(--u)) 0 12px; border-radius: 25px; background: white; color: #d72c38; }
+  #night-light-auto-options .auto-settings-delete { display: grid; place-items: center; min-height: max(44px, calc(46 * var(--u))); margin: calc(26 * var(--u)) 0 12px; border-radius: 15px; background: white; color: #d72c38; }
   #night-light-auto-options .auto-settings-page .auto-home { margin-top: auto; }
 
   @container (max-width: 340px) {
@@ -2364,7 +2365,6 @@ html&gt;body{padding:0}&lt;/style&gt;
     #night-light-auto-options .auto-boost { min-height: calc(77 * var(--u)); }
     #night-light-auto-options .auto-levels { margin-bottom: calc(8 * var(--u)); }
     #night-light-auto-options .auto-settings-section { margin-top: calc(18 * var(--u)); }
-    #night-light-auto-options .auto-settings-section h3 { margin-bottom: calc(11 * var(--u)); }
     #night-light-auto-options .auto-settings-delete { margin-block: calc(23 * var(--u)) 8px; }
   }
 
@@ -2390,7 +2390,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 &lt;script&gt;
 (() =&gt; {
   const root = document.getElementById(&quot;night-light-auto-options&quot;);
-  const setting = { enabled: true, duration: 30 };
+  const setting = { enabled: true, duration: 20 };
 
   function formatDuration(duration, minuteUnit, secondUnit) {
     const minutes = Math.floor(duration / 60);
