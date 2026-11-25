@@ -2016,12 +2016,13 @@ html&gt;body{padding:0}&lt;/style&gt;
 &lt;template id=&quot;night-light-auto-template&quot;&gt;
   &lt;article class=&quot;auto-phone&quot; lang=&quot;en&quot; aria-label=&quot;Pump Control&quot;&gt;
     &lt;div class=&quot;auto-screen&quot;&gt;
-      &lt;div class=&quot;auto-status&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;9:41&lt;/span&gt;&lt;span&gt;▴ ▰&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;auto-status&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;9:41&lt;/span&gt;&lt;span class=&quot;auto-status-icons&quot;&gt;&lt;span class=&quot;auto-signal&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;&lt;i class=&quot;auto-wifi&quot;&gt;&lt;/i&gt;&lt;b&gt;&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;
       &lt;header class=&quot;auto-header&quot;&gt;
         &lt;span class=&quot;auto-nav&quot; aria-hidden=&quot;true&quot;&gt;‹&lt;/span&gt;
         &lt;h2&gt;Pump Control&lt;/h2&gt;
         &lt;button class=&quot;auto-nav auto-gear cursor-interaction&quot; type=&quot;button&quot; aria-label=&quot;Night Light settings&quot;&gt;⚙︎&lt;/button&gt;
       &lt;/header&gt;
+      &lt;div class=&quot;auto-control-scroll&quot;&gt;
       &lt;div class=&quot;auto-devices&quot; aria-label=&quot;Connected pumps&quot;&gt;
         &lt;div&gt;&lt;img src=&quot;data:image/png;base64,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&quot; width=&quot;76&quot; height=&quot;88&quot; alt=&quot;&quot;&gt;&lt;span&gt;L &lt;b&gt;100&lt;/b&gt;&lt;/span&gt;&lt;time&gt;13:50&lt;/time&gt;&lt;/div&gt;
         &lt;div class=&quot;auto-sync&quot;&gt;&lt;i aria-hidden=&quot;true&quot;&gt;⇄&lt;/i&gt;&lt;span&gt;Sync&lt;/span&gt;&lt;/div&gt;
@@ -2073,12 +2074,13 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;/div&gt;
       &lt;/section&gt;
 
-      &lt;div class=&quot;auto-actions&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;■ &amp;nbsp;Hold to finish&lt;/span&gt;&lt;span&gt;❚❚&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;auto-actions&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;&lt;i&gt;&lt;/i&gt;Hold to finish&lt;/span&gt;&lt;span&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;
       &lt;div class=&quot;auto-home&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
     &lt;/div&gt;
 
     &lt;section class=&quot;auto-settings-page&quot; aria-label=&quot;Setting&quot; hidden&gt;
-      &lt;div class=&quot;auto-status&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;7:41&lt;/span&gt;&lt;span class=&quot;auto-settings-status-icons&quot;&gt;▂▃▅▇ &lt;i&gt;&lt;/i&gt;&lt;b&gt;&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;auto-status&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;7:41&lt;/span&gt;&lt;span class=&quot;auto-status-icons&quot;&gt;&lt;span class=&quot;auto-signal&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;&lt;i class=&quot;auto-wifi&quot;&gt;&lt;/i&gt;&lt;b&gt;&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;
       &lt;header class=&quot;auto-header auto-settings-header&quot;&gt;
         &lt;button class=&quot;auto-nav auto-settings-back cursor-interaction&quot; type=&quot;button&quot; aria-label=&quot;Back to Pump Control&quot;&gt;&lt;span class=&quot;auto-chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;/button&gt;
         &lt;h2&gt;Setting&lt;/h2&gt;
@@ -2167,7 +2169,6 @@ html&gt;body{padding:0}&lt;/style&gt;
 &lt;style&gt;
   #night-light-auto-options [data-variant] {
     box-sizing: border-box;
-    min-height: 640px;
     padding: 12px 0;
     align-content: start;
     justify-items: center;
@@ -2186,43 +2187,67 @@ html&gt;body{padding:0}&lt;/style&gt;
     --app-wine: linear-gradient(#790725, #a83d52);
     position: relative;
     width: min(355px, 100%);
-    min-height: 606px;
+    aspect-ratio: 484 / 1053;
+    container-type: inline-size;
     overflow: hidden;
     color-scheme: light;
     color: var(--app-text);
     background: linear-gradient(#f4eae0, #f9f7f5 44%);
-    border-radius: 32px;
+    border-radius: 12% / 5.5%;
     font: 500 14px/1.35 -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;
   }
 
-  #night-light-auto-options .auto-screen { min-height: 606px; display: flex; flex-direction: column; padding: 16px 12px 7px; }
+  #night-light-auto-options .auto-screen, #night-light-auto-options .auto-settings-page {
+    --u: calc(100cqw / 355);
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    padding: calc(20 * var(--u)) calc(14 * var(--u)) calc(8 * var(--u));
+  }
+  #night-light-auto-options .auto-control-scroll {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    scrollbar-width: none;
+    padding: 1px 1px 4px;
+  }
   #night-light-auto-options button { color: inherit; font: inherit; }
   #night-light-auto-options button:focus-visible, #night-light-auto-options input:focus-visible { outline: 2px solid var(--app-accent); outline-offset: 2px; }
-  #night-light-auto-options .auto-status { display: flex; align-items: center; justify-content: space-between; padding: 0 17px; font-weight: 650; }
-  #night-light-auto-options .auto-header { display: flex; align-items: center; justify-content: space-between; margin: 9px 0 13px; }
-  #night-light-auto-options .auto-header h2 { margin: 0; font: 650 14px/1.2 -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif; }
-  #night-light-auto-options .auto-nav { display: grid; place-items: center; width: 37px; height: 37px; border-radius: 50%; border: 1px solid #e8dfd8; background: #fff8; font-size: 20px; line-height: 1; }
+  #night-light-auto-options .auto-status { display: flex; align-items: center; justify-content: space-between; padding: 0 calc(22 * var(--u)); font-weight: 650; }
+  #night-light-auto-options .auto-status-icons { display: flex; align-items: center; gap: 6px; }
+  #night-light-auto-options .auto-signal { display: flex; align-items: flex-end; gap: 1.5px; }
+  #night-light-auto-options .auto-signal i { width: 2.5px; height: 4px; border-radius: 1px; background: currentColor; }
+  #night-light-auto-options .auto-signal i:nth-child(2) { height: 6px; }
+  #night-light-auto-options .auto-signal i:nth-child(3) { height: 8px; }
+  #night-light-auto-options .auto-signal i:nth-child(4) { height: 10px; }
+  #night-light-auto-options .auto-wifi { width: 9px; height: 9px; border: solid currentColor; border-width: 2px 0 0 2px; border-radius: 100% 0 0; transform: rotate(45deg); }
+  #night-light-auto-options .auto-status-icons b { width: 21px; height: 10px; border: 1px solid #8e8189; border-radius: 3px; background: currentColor; box-shadow: inset 0 0 0 1px #f8f6f5; }
+  #night-light-auto-options .auto-header { display: flex; align-items: center; justify-content: space-between; margin: calc(15 * var(--u)) 0 calc(16 * var(--u)); }
+  #night-light-auto-options .auto-header h2 { margin: 0; font: 610 14px/1.2 -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif; }
+  #night-light-auto-options .auto-nav { display: grid; place-items: center; width: max(40px, calc(41 * var(--u))); height: max(40px, calc(41 * var(--u))); border-radius: 50%; border: 1px solid #e8dfd8; background: #fff8; font-size: 22px; line-height: 1; }
 
-  #night-light-auto-options .auto-devices { display: grid; grid-template-columns: 1fr 46px 1fr; justify-items: center; margin: 0 15px 12px; text-align: center; }
-  #night-light-auto-options .auto-devices img { display: block; width: 65px; height: auto; }
-  #night-light-auto-options .auto-devices span { display: block; font-size: 11px; }
+  #night-light-auto-options .auto-devices { display: grid; grid-template-columns: 1fr calc(44 * var(--u)) 1fr; justify-items: center; margin: 0 calc(23 * var(--u)) calc(24 * var(--u)); text-align: center; }
+  #night-light-auto-options .auto-devices img { display: block; width: calc(83 * var(--u)); height: auto; }
+  #night-light-auto-options .auto-devices span { display: block; margin-top: calc(5 * var(--u)); font-size: 12px; }
   #night-light-auto-options .auto-devices b { padding-inline: 3px; border-radius: 3px; background: var(--app-text); color: white; font-size: 9px; }
-  #night-light-auto-options .auto-devices time { color: var(--app-quiet); font-size: 11px; }
+  #night-light-auto-options .auto-devices time { display: block; margin-top: calc(5 * var(--u)); color: var(--app-quiet); font-size: 11px; }
   #night-light-auto-options .auto-sync { align-self: center; margin-bottom: 9px; color: var(--app-accent); }
-  #night-light-auto-options .auto-sync i { display: grid; place-items: center; width: 34px; height: 34px; margin: 0 auto 3px; border-radius: 50%; background: var(--app-wine); color: white; font-style: normal; }
+  #night-light-auto-options .auto-sync i { display: grid; place-items: center; width: calc(39 * var(--u)); height: calc(39 * var(--u)); margin: 0 auto 3px; border-radius: 50%; background: var(--app-wine); color: white; font-style: normal; }
 
-  #night-light-auto-options .auto-boost { display: grid; grid-template-columns: auto 1fr; gap: 8px 10px; align-items: center; margin-bottom: 10px; padding: 9px 14px 11px; border-radius: 18px; background: linear-gradient(110deg,#ffe7e7,#ffd8df); font-size: 12px; }
+  #night-light-auto-options .auto-boost { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-content: center; align-items: center; min-height: calc(80 * var(--u)); margin-bottom: calc(14 * var(--u)); padding: 11px 14px; border-radius: 20px; background: linear-gradient(110deg,#ffe7e7,#ffd8df); font-size: 12px; }
   #night-light-auto-options .auto-boost small { justify-self: start; padding: 2px 6px; border: 1px solid #80132f22; border-radius: 7px; font-size: 10px; }
   #night-light-auto-options .auto-boost i { display: block; grid-column: 1 / -1; height: 6px; border-radius: 8px; background: linear-gradient(90deg,#b9535e 0 18%,#efb4b5 18% 26%,#ff9c79 26% 31%,#b9535e 31% 64%,#efb4b5 64% 74%,#ff9c79 74% 78%,#b9535e 78%); }
 
-  #night-light-auto-options .auto-levels { margin-bottom: 10px; padding: 11px 14px 10px; background: white; border-radius: 18px; font-size: 12px; }
+  #night-light-auto-options .auto-levels { min-height: calc(240 * var(--u)); margin-bottom: calc(14 * var(--u)); padding: calc(15 * var(--u)) 14px; background: white; border-radius: 21px; font-size: 12px; }
   #night-light-auto-options .auto-level-heading span { color: var(--app-quiet); font-size: 11px; }
-  #night-light-auto-options .auto-level-grid { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 7px; text-align: center; color: var(--app-quiet); font-size: 10px; }
-  #night-light-auto-options .auto-scale { position: relative; width: 56px; height: 52px; margin: 5px auto 0; background: repeating-linear-gradient(#d0c5ca 0 1px, transparent 1px 10px) center / 21px 100% no-repeat; }
-  #night-light-auto-options .auto-scale b { position: absolute; display: grid; place-items: center; inset: 16px 2px auto; height: 23px; border-radius: 20px; background: var(--app-wine); color: white; box-shadow: 0 3px 7px #7304252b; font-size: 12px; }
-  #night-light-auto-options .auto-scale-both { background-color: #f4f2f3; border-radius: 11px; }
+  #night-light-auto-options .auto-level-grid { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: calc(17 * var(--u)); text-align: center; color: var(--app-quiet); font-size: 11px; }
+  #night-light-auto-options .auto-scale { position: relative; width: calc(74 * var(--u)); height: calc(150 * var(--u)); margin: calc(11 * var(--u)) auto 0; background: repeating-linear-gradient(#cec3c9 0 1px, transparent 1px calc(16.5 * var(--u))) center / calc(28 * var(--u)) 100% no-repeat; }
+  #night-light-auto-options .auto-scale b { position: absolute; display: grid; place-items: center; inset: 44% calc(6 * var(--u)) auto; height: calc(33 * var(--u)); border-radius: 20px; background: var(--app-wine); color: white; box-shadow: 0 5px 10px #73042530; font-size: 14px; }
+  #night-light-auto-options .auto-scale-both { background-color: #f4f2f3; border-radius: 18px; }
   #night-light-auto-options .auto-scale-both b { background: white; color: var(--app-text); box-shadow: 0 3px 6px #25091813; }
-  #night-light-auto-options .auto-level-grid &gt; :last-child b { top: 7px; }
+  #night-light-auto-options .auto-level-grid &gt; :last-child b { top: 33%; }
 
   #night-light-auto-options .auto-light { background: white; border-radius: 20px; }
   #night-light-auto-options .auto-light-header { display: flex; align-items: center; gap: 9px; min-height: 56px; padding: 5px 12px 5px 15px; }
@@ -2286,23 +2311,38 @@ html&gt;body{padding:0}&lt;/style&gt;
     #night-light-auto-options .auto-switch-track, #night-light-auto-options .auto-switch-track::before { transition: none; }
   }
 
-  #night-light-auto-options .auto-actions { display: grid; grid-template-columns: 1fr 42px; gap: 6px; margin: auto 15px 0; padding-top: 15px; }
-  #night-light-auto-options .auto-actions span { display: grid; place-items: center; height: 42px; border-radius: 36px; background: linear-gradient(#f1a1ae,#ffc5cf); color: var(--app-accent); font-size: 13px; }
-  #night-light-auto-options .auto-actions span + span { background: var(--app-wine); color: white; letter-spacing: -2px; padding-right: 2px; }
-  #night-light-auto-options .auto-home { width: 108px; height: 4px; margin: 12px auto 0; border-radius: 4px; background: #191315; }
+  #night-light-auto-options .auto-actions {
+    display: grid;
+    grid-template-columns: 1fr calc(50 * var(--u));
+    flex-shrink: 0;
+    gap: calc(6 * var(--u));
+    margin-inline: calc(16 * var(--u));
+    padding-top: calc(10 * var(--u));
+  }
+  #night-light-auto-options .auto-actions span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    height: calc(50 * var(--u));
+    border-radius: 36px;
+    background: linear-gradient(#f1a1ae, #ffc5cf);
+    color: var(--app-accent);
+    font-size: 14px;
+  }
+  #night-light-auto-options .auto-actions span + span { gap: 3px; background: var(--app-wine); color: white; }
+  #night-light-auto-options .auto-actions i { width: calc(15 * var(--u)); height: calc(15 * var(--u)); border-radius: 4px; background: currentColor; }
+  #night-light-auto-options .auto-actions span + span i { width: calc(5 * var(--u)); border-radius: 2px; }
+  #night-light-auto-options .auto-home { flex: 0 0 4px; width: calc(127 * var(--u)); margin: calc(18 * var(--u)) auto 0; border-radius: 4px; background: #191315; }
 
   #night-light-auto-options .auto-settings-page {
-    display: flex;
-    flex-direction: column;
-    min-height: 606px;
-    padding: 19px 14px 8px;
+    overflow-y: auto;
+    scrollbar-width: none;
     background: #f8f6f5;
   }
+  #night-light-auto-options .auto-settings-page &gt; :not(.auto-home) { flex-shrink: 0; }
 
-  #night-light-auto-options .auto-settings-status-icons { display: flex; align-items: center; gap: 6px; font-size: 9px; line-height: 1; }
-  #night-light-auto-options .auto-settings-status-icons i { width: 8px; height: 8px; border-top: 2px solid; border-left: 2px solid; border-radius: 100% 0 0; transform: rotate(45deg); }
-  #night-light-auto-options .auto-settings-status-icons b { width: 20px; height: 9px; border: 1px solid #887983; border-radius: 3px; background: currentColor; box-shadow: inset 0 0 0 1px #f8f6f5; }
-  #night-light-auto-options .auto-settings-header { display: grid; grid-template-columns: 44px 1fr 44px; margin: 14px 0 18px; text-align: center; }
+  #night-light-auto-options .auto-settings-header { display: grid; grid-template-columns: 44px 1fr 44px; margin: calc(19 * var(--u)) 0 calc(19 * var(--u)); text-align: center; }
   #night-light-auto-options .auto-settings-header h2 { font-size: 15px; }
   #night-light-auto-options .auto-settings-back { width: 44px; height: 44px; background: linear-gradient(#efedec, #fff); }
   #night-light-auto-options .auto-settings-back .auto-chevron { width: 8px; height: 8px; margin: 0; transform: rotate(-135deg); }
@@ -2313,7 +2353,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 13px;
-    min-height: 72px;
+    min-height: calc(72 * var(--u));
     padding: 11px 16px;
   }
   #night-light-auto-options .auto-settings-pumps { display: flex; gap: 2px; }
@@ -2324,15 +2364,14 @@ html&gt;body{padding:0}&lt;/style&gt;
   #night-light-auto-options .auto-settings-battery b { padding: 1px 3px; border-radius: 4px; background: var(--app-text); color: white; font-size: 9px; }
   #night-light-auto-options .auto-settings-device .auto-chevron, #night-light-auto-options .auto-general-list .auto-chevron { width: 7px; height: 7px; color: #958892; }
 
-  #night-light-auto-options .auto-settings-section { margin-top: 21px; }
-  #night-light-auto-options .auto-settings-section h3 { margin: 0 0 12px 7px; color: var(--app-quiet); font-size: 12px; font-weight: 500; }
-  #night-light-auto-options .auto-behavior-card { padding: 13px 14px; }
+  #night-light-auto-options .auto-settings-section { margin-top: calc(22 * var(--u)); }
+  #night-light-auto-options .auto-settings-section h3 { margin: 0 0 calc(15 * var(--u)) 7px; color: var(--app-quiet); font-size: 12px; font-weight: 500; }
+  #night-light-auto-options .auto-behavior-card { min-height: calc(79 * var(--u)); padding: calc(15 * var(--u)) 14px; }
   #night-light-auto-options .auto-policy-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
   #night-light-auto-options .auto-policy-row strong, #night-light-auto-options .auto-settings-duration legend { font-size: 13px; font-weight: 650; }
   #night-light-auto-options .auto-policy-row p { margin: 3px 0 0; color: var(--app-quiet); font-size: 11px; line-height: 1.35; }
   #night-light-auto-options .auto-settings-duration { min-width: 0; margin: 13px 0 0; padding: 0; border: 0; }
   #night-light-auto-options .auto-settings-duration legend { padding: 0; }
-  #night-light-auto-options .auto-settings-duration:disabled { opacity: .52; }
   #night-light-auto-options .auto-preset-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; margin-top: 11px; }
   #night-light-auto-options .auto-preset-options button {
     min-height: 44px;
@@ -2348,12 +2387,12 @@ html&gt;body{padding:0}&lt;/style&gt;
   #night-light-auto-options .auto-preset-options button[aria-pressed=&quot;true&quot;] { border-color: var(--app-accent); background: #fcf5f7; color: var(--app-accent); }
 
   #night-light-auto-options .auto-general-list { margin: 0; padding: 0 14px; list-style: none; }
-  #night-light-auto-options .auto-general-list li { display: flex; align-items: center; gap: 10px; min-height: 42px; font-size: 12px; }
+  #night-light-auto-options .auto-general-list li { display: flex; align-items: center; gap: 10px; min-height: max(40px, calc(44 * var(--u))); font-size: 12px; }
   #night-light-auto-options .auto-general-list li + li { border-top: 1px solid #f1edef; }
   #night-light-auto-options .auto-general-list li &gt; :first-child { margin-right: auto; }
   #night-light-auto-options .auto-firmware { display: flex; align-items: center; gap: 6px; color: var(--app-quiet); }
   #night-light-auto-options .auto-firmware i { width: 7px; height: 7px; border-radius: 50%; background: #f14b52; }
-  #night-light-auto-options .auto-settings-delete { display: grid; place-items: center; min-height: 45px; margin: 18px 0 12px; border-radius: 25px; background: white; color: #d72c38; }
+  #night-light-auto-options .auto-settings-delete { display: grid; place-items: center; min-height: max(44px, calc(46 * var(--u))); margin: calc(26 * var(--u)) 0 12px; border-radius: 25px; background: white; color: #d72c38; }
   #night-light-auto-options .auto-settings-page .auto-home { margin-top: auto; }
 
   #night-light-auto-options .auto-overlay { position: absolute; inset: 0; z-index: 1; display: grid; align-items: end; }
@@ -2399,6 +2438,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     });
     root.querySelectorAll(&quot;.auto-settings-duration&quot;).forEach((fieldset) =&gt; {
       fieldset.disabled = !setting.enabled;
+      fieldset.hidden = !setting.enabled;
       const preset = fieldset.querySelector(`[data-duration=&quot;${setting.duration}&quot;]`);
       const selected = preset ?? fieldset.querySelector(&#x27;[data-duration=&quot;custom&quot;]&#x27;);
       fieldset.querySelectorAll(&quot;[data-duration]&quot;).forEach((button) =&gt; {
@@ -2418,6 +2458,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
   views.forEach((view) =&gt; {
     const screen = view.querySelector(&quot;.auto-screen&quot;);
+    const controlScroll = view.querySelector(&quot;.auto-control-scroll&quot;);
     const settingsPage = view.querySelector(&quot;.auto-settings-page&quot;);
     const back = view.querySelector(&quot;.auto-settings-back&quot;);
     const settingsPumps = view.querySelector(&quot;.auto-settings-pumps&quot;);
@@ -2566,6 +2607,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       brightness.hidden = !on;
       window.clearInterval(interval);
       if (on) {
+        const overflow = brightness.getBoundingClientRect().bottom - controlScroll.getBoundingClientRect().bottom + 4;
+        controlScroll.scrollTop += Math.max(0, Math.ceil(overflow));
         const start = performance.now();
         const update = () =&gt; {
           const total = Math.floor((performance.now() - start) / 1000);
