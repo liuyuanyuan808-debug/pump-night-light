@@ -2022,10 +2022,7 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;div class=&quot;auto-light-header&quot;&gt;
           &lt;div class=&quot;auto-light-heading&quot;&gt;
             &lt;i class=&quot;auto-light-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-            &lt;div class=&quot;auto-light-label&quot;&gt;
-              &lt;strong&gt;Light&lt;/strong&gt;
-              &lt;time class=&quot;auto-elapsed&quot; role=&quot;timer&quot; aria-label=&quot;Light on for&quot; hidden&gt;00:00&lt;/time&gt;
-            &lt;/div&gt;
+            &lt;strong&gt;Light&lt;/strong&gt;
           &lt;/div&gt;
           &lt;button type=&quot;button&quot; class=&quot;auto-entry auto-chip cursor-interaction&quot; aria-haspopup=&quot;dialog&quot;&gt;
             &lt;span class=&quot;auto-summary&quot;&gt;Auto · &lt;span class=&quot;auto-duration&quot;&gt;20s&lt;/span&gt;&lt;/span&gt;
@@ -2225,10 +2222,8 @@ html&gt;body{padding:0}&lt;/style&gt;
   #night-light-auto-options .auto-light { background: white; border-radius: 20px; }
   #night-light-auto-options .auto-light-header { display: flex; align-items: center; gap: 9px; min-height: 56px; padding: 5px 12px 5px 15px; }
   #night-light-auto-options .auto-light-heading { display: flex; align-items: center; gap: 9px; margin-right: auto; }
-  #night-light-auto-options .auto-light-label { display: grid; gap: 1px; white-space: nowrap; }
   #night-light-auto-options .auto-light-icon { flex: 0 0 11px; position: relative; height: 13px; margin: -3px 1px 0; border: 1.3px solid; border-radius: 54% 54% 43% 43%; }
   #night-light-auto-options .auto-light-icon::after { content: &quot;&quot;; position: absolute; bottom: -4px; left: 2px; width: 5px; height: 4px; border: 1px solid; border-radius: 0 0 2px 2px; }
-  #night-light-auto-options .auto-elapsed { color: var(--app-quiet); font-size: 11px; line-height: 1.15; font-variant-numeric: tabular-nums; }
   #night-light-auto-options .auto-chip {
     display: inline-flex;
     align-items: center;
@@ -2435,7 +2430,6 @@ html&gt;body{padding:0}&lt;/style&gt;
   const fields = form.querySelector(&quot;fieldset&quot;);
   const error = form.querySelector(&quot;.auto-error&quot;);
   const lightSwitch = root.querySelector(&quot;.auto-light-switch&quot;);
-  const elapsed = root.querySelector(&quot;.auto-elapsed&quot;);
   const brightness = root.querySelector(&quot;.auto-brightness&quot;);
   const brightnessInput = root.querySelector(&quot;.auto-brightness-input&quot;);
   const brightnessValue = root.querySelector(&quot;.auto-brightness-value&quot;);
@@ -2443,7 +2437,6 @@ html&gt;body{padding:0}&lt;/style&gt;
   let activeDialog;
   let opener;
   let settingsOpener;
-  let interval;
 
   root.querySelectorAll(&quot;.auto-devices img&quot;).forEach((img) =&gt; settingsPumps.append(img.cloneNode()));
 
@@ -2563,19 +2556,10 @@ html&gt;body{padding:0}&lt;/style&gt;
   lightSwitch.addEventListener(&quot;click&quot;, () =&gt; {
     const on = lightSwitch.getAttribute(&quot;aria-checked&quot;) === &quot;false&quot;;
     lightSwitch.setAttribute(&quot;aria-checked&quot;, String(on));
-    elapsed.hidden = !on;
     brightness.hidden = !on;
-    window.clearInterval(interval);
     if (on) {
       const overflow = brightness.getBoundingClientRect().bottom - controlScroll.getBoundingClientRect().bottom + 4;
       controlScroll.scrollTop += Math.max(0, Math.ceil(overflow));
-      const start = performance.now();
-      const update = () =&gt; {
-        const total = Math.floor((performance.now() - start) / 1000);
-        elapsed.textContent = [Math.floor(total / 60), total % 60].map((value) =&gt; String(value).padStart(2, &quot;0&quot;)).join(&quot;:&quot;);
-      };
-      update();
-      interval = window.setInterval(update, 200);
     }
   });
 
